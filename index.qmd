@@ -20,7 +20,7 @@ This 10-week course guides learners through building production-grade business b
 
 The course aligns with **ICTPRG553 Create and develop REST APIs** and adopts a 100% free, open-source technology stack.
 
-```mermaid
+```{mermaid}
 flowchart LR
     A["Phase 1 (Weeks 1–4)<br/>REST Foundation & FastAPI"] --> B["Phase 2 (Weeks 5–8)<br/>MCP & AI Integration"]
     B --> C["Phase 3 (Weeks 9–10)<br/>Project Studio & Delivery"]
@@ -32,7 +32,7 @@ flowchart LR
 ::: {.session-card}
 ### [Session 1: Introduction to Connect AI with Business Systems using REST](<Session 1 Introduction to Connect AI with Business Systems using REST.ipynb>)
 
-Follow the course roadmap, request arXiv XML and NASA JSON using Postman and Python, and prepare an OpenRouter model request. Use diagrams to connect clients, servers, REST, FastAPI, MCP and FastMCP.
+Follow the course roadmap, compare arXiv XML with NASA JSON, practise HTTP methods and status codes using restful-api.dev, and prepare an OpenRouter model request. Use diagrams to connect clients, servers, REST, FastAPI, MCP and FastMCP.
 :::
 
 ::: {.session-card}
