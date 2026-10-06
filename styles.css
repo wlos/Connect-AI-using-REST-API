@@ -1,0 +1,138 @@
+:root {
+  --course-ink: #172033;
+  --course-muted: #5c6577;
+  --course-blue: #0066cc;
+  --course-blue-dark: #003d7a;
+  --course-teal: #008080;
+  --course-surface: #f4f8fb;
+  --course-border: #d4e2ec;
+}
+
+body {
+  color: var(--course-ink);
+}
+
+.course-hero {
+  margin: 1.5rem 0 3rem;
+  padding: clamp(2rem, 6vw, 4.5rem);
+  overflow: hidden;
+  color: #fff;
+  background:
+    radial-gradient(circle at 85% 15%, rgba(102, 204, 255, 0.35), transparent 30%),
+    linear-gradient(135deg, var(--course-blue-dark), var(--course-teal));
+  border-radius: 1.25rem;
+  box-shadow: 0 1rem 2.5rem rgba(0, 61, 122, 0.18);
+}
+
+.course-hero h1 {
+  max-width: 18ch;
+  margin: 0.3rem 0 1rem;
+  color: #fff;
+  font-size: clamp(2.4rem, 6vw, 4.2rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+.course-hero > p {
+  max-width: 48rem;
+  margin-bottom: 1.75rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+}
+
+.course-kicker {
+  color: #b3e0ff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.course-hero .btn-primary {
+  color: var(--course-blue-dark);
+  background: #fff;
+  border-color: #fff;
+  font-weight: 700;
+}
+
+.course-hero .btn-primary:hover {
+  color: #fff;
+  background: transparent;
+}
+
+.session-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  gap: 1.25rem;
+  margin: 1.25rem 0 3rem;
+}
+
+.session-card {
+  padding: 1.5rem;
+  background: var(--course-surface);
+  border: 1px solid var(--course-border);
+  border-radius: 1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.session-card:hover {
+  border-color: var(--course-blue);
+  box-shadow: 0 0.75rem 1.75rem rgba(0, 102, 204, 0.12);
+  transform: translateY(-2px);
+}
+
+.session-card h3 {
+  margin-top: 0;
+  font-size: 1.2rem;
+  line-height: 1.35;
+}
+
+.session-card h3 a {
+  color: var(--course-blue);
+  text-decoration: none;
+}
+
+.session-card h3 a:hover {
+  color: var(--course-blue-dark);
+  text-decoration: underline;
+}
+
+.session-card p {
+  margin-bottom: 0;
+  color: var(--course-muted);
+}
+
+pre {
+  border-radius: 0.4rem;
+}
+
+/* Keep wide Markdown and notebook-output tables inside the page layout. */
+main.content,
+.page-columns,
+.column-page,
+.cell-output-display {
+  min-width: 0;
+}
+
+main.content table,
+.cell-output-display table {
+  display: block;
+  width: max-content;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+main.content table th,
+main.content table td,
+.cell-output-display table th,
+.cell-output-display table td {
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+@media (max-width: 575px) {
+  .course-hero {
+    border-radius: 1rem;
+  }
+}

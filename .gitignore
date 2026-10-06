@@ -1,0 +1,14 @@
+.DS_Store
+**/.DS_Store
+_site/
+.quarto/
+.jupyter_cache/
+__pycache__/
+.venv/
+
+# Visible local directory for temporary files created during development
+archive/
+
+# Local project instructions and configuration
+AGENTS.md
+.codex/

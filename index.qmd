@@ -1,0 +1,85 @@
+---
+page-layout: full
+---
+
+::: {.course-hero}
+::: {.course-kicker}
+TAFE COURSE MATERIALS &middot; ICTPRG553
+:::
+
+# Connect AI with Business Systems using REST
+
+Connect modern artificial intelligence assistants with enterprise systems through robust REST APIs, FastAPI backends, and the Model Context Protocol (MCP).
+
+[Browse course sessions](#course-sessions){.btn .btn-primary .btn-lg}
+:::
+
+## Course Overview
+
+This 10-week course guides learners through building production-grade business backends with **FastAPI** and integrating them safely with intelligent assistants using the open **Model Context Protocol (MCP)**.
+
+The course aligns with **ICTPRG553 Create and develop REST APIs** and adopts a 100% free, open-source technology stack.
+
+```mermaid
+flowchart LR
+    A["Phase 1 (Weeks 1–4)<br/>REST Foundation & FastAPI"] --> B["Phase 2 (Weeks 5–8)<br/>MCP & AI Integration"]
+    B --> C["Phase 3 (Weeks 9–10)<br/>Project Studio & Delivery"]
+```
+
+## Course Sessions {#course-sessions}
+
+::: {.session-grid}
+::: {.session-card}
+### [Session 1: Introduction to Connect AI with Business Systems using REST](<Session 1 Introduction to Connect AI with Business Systems using REST.ipynb>)
+
+Follow the course roadmap, request arXiv XML and NASA JSON using Postman and Python, and prepare an OpenRouter model request. Use diagrams to connect clients, servers, REST, FastAPI, MCP and FastMCP.
+:::
+
+::: {.session-card}
+### Session 2: HTTP Protocols and First FastAPI App
+
+Delve into the HTTP protocol, inspect request/response headers and JSON payloads, and build your first live FastAPI endpoints with automatic interactive documentation.
+:::
+
+::: {.session-card}
+### Session 3: Full CRUD, Databases and Automated Testing
+
+Implement persistent storage using SQLite and SQLModel, master PUT versus PATCH semantics, handle status codes, and test endpoints with pytest.
+:::
+
+::: {.session-card}
+### Session 4: CORS and API Security
+
+Demystify the Same-Origin Policy, examine OPTIONS preflight handshakes, configure CORSMiddleware, and secure endpoints with API keys and role-based authorisation.
+:::
+
+::: {.session-card}
+### Session 5: MCP Architecture and Local FastMCP Services
+
+Discover why AI needs standard integration protocols, navigate Host/Client/Server roles, and construct your first local FastMCP tools over STDIO using the MCP Inspector.
+:::
+
+::: {.session-card}
+### Session 6: Powering FastMCP with FastAPI Backends
+
+Bridge AI tools with existing business REST services, expose enterprise documents via Resources, craft Prompt templates, and implement defensive error handling.
+:::
+
+::: {.session-card}
+### Session 7: Streamable HTTP and Mounting MCP in FastAPI
+
+Transition from local STDIO to networked HTTP streaming, mount MCP endpoints directly inside FastAPI via ASGI, add audit logging, and connect real AI assistants.
+:::
+
+::: {.session-card}
+### Session 8: Enterprise AI Risk Mitigation and OpenAPI Documentation
+
+Protect against prompt injection, enforce human-in-the-loop safeguards, study Australian privacy principles, and verify OpenAPI documentation compliance.
+:::
+
+::: {.session-card}
+### Weeks 9–10: Studio Project Implementation & Assessment
+
+Dedicated hands-on project studio weeks without new lectures. Build, refine, and present your end-to-end smart enterprise system for formal unit assessment.
+:::
+:::

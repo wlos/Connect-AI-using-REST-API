@@ -1,0 +1,49 @@
+project:
+  type: website
+  output-dir: _site
+  render:
+    - index.qmd
+    - "Session 1 Introduction to Connect AI with Business Systems using REST.ipynb"
+
+website:
+  title: "Connect AI with Business Systems using REST"
+  site-url: "https://wlos.github.io/Connect-AI-using-REST-API/"
+  repo-url: "https://github.com/wlos/Connect-AI-using-REST-API"
+  repo-actions:
+    - source
+  navbar:
+    background: primary
+    left:
+      - text: "Home"
+        href: index.qmd
+      - text: "Session 1"
+        href: "Session 1 Introduction to Connect AI with Business Systems using REST.ipynb"
+  sidebar:
+    style: floating
+    search: true
+    contents:
+      - index.qmd
+      - section: "Course Sessions"
+        contents:
+          - "Session 1 Introduction to Connect AI with Business Systems using REST.ipynb"
+  page-footer:
+    left: "Connect AI with Business Systems using REST (ICTPRG553) course materials"
+    right:
+      - icon: github
+        href: "https://github.com/wlos/Connect-AI-using-REST-API"
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+    toc-location: right
+    toc-title: "On this page"
+    toc-depth: 3
+    toc-expand: true
+    code-copy: true
+    code-overflow: wrap
+    smooth-scroll: true
+
+execute:
+  enabled: false
