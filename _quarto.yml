@@ -4,6 +4,7 @@ project:
   render:
     - index.qmd
     - "Session 1 Introduction to Connect AI with Business Systems using REST.ipynb"
+    - "Session 2 Creating APIs with FastAPI.ipynb"
 
 website:
   title: "Connect AI with Business Systems using REST"
@@ -18,6 +19,8 @@ website:
         href: index.qmd
       - text: "Session 1"
         href: "Session 1 Introduction to Connect AI with Business Systems using REST.ipynb"
+      - text: "Session 2"
+        href: "Session 2 Creating APIs with FastAPI.ipynb"
   sidebar:
     style: floating
     search: true
@@ -26,6 +29,7 @@ website:
       - section: "Course Sessions"
         contents:
           - "Session 1 Introduction to Connect AI with Business Systems using REST.ipynb"
+          - "Session 2 Creating APIs with FastAPI.ipynb"
   page-footer:
     left: "Connect AI with Business Systems using REST (ICTPRG553) course materials"
     right:
