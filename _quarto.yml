@@ -41,7 +41,6 @@ website:
           - "Session 1 Introduction to Connect AI with Business Systems using REST.ipynb"
           - "Session 2 Creating APIs with FastAPI.ipynb"
           - "Session 3-4 Building a Chatbot with an LLM API.ipynb"
-          - "Session 3-4 Practice Chatbot with Multiple Tools.ipynb"
   page-footer:
     left: "Connect AI with Business Systems using REST (ICTPRG553) course materials"
     right:
