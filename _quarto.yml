@@ -1,10 +1,18 @@
 project:
   type: website
   output-dir: _site
+  resources:
+    - assets/session2/setup_api_ss.bat
+    - assets/session2/main.py
+    - assets/session2/stage3_weather.py
+    - assets/session2/stage2_demo.py
+    - assets/session3/weather_chatbot.py
   render:
     - index.qmd
     - "Session 1 Introduction to Connect AI with Business Systems using REST.ipynb"
     - "Session 2 Creating APIs with FastAPI.ipynb"
+    - "Session 3-4 Building a Chatbot with an LLM API.ipynb"
+    - "Session 3-4 Practice Chatbot with Multiple Tools.ipynb"
 
 website:
   title: "Connect AI with Business Systems using REST"
@@ -21,6 +29,8 @@ website:
         href: "Session 1 Introduction to Connect AI with Business Systems using REST.ipynb"
       - text: "Session 2"
         href: "Session 2 Creating APIs with FastAPI.ipynb"
+      - text: "Session 3-4"
+        href: "Session 3-4 Building a Chatbot with an LLM API.ipynb"
   sidebar:
     style: floating
     search: true
@@ -30,6 +40,8 @@ website:
         contents:
           - "Session 1 Introduction to Connect AI with Business Systems using REST.ipynb"
           - "Session 2 Creating APIs with FastAPI.ipynb"
+          - "Session 3-4 Building a Chatbot with an LLM API.ipynb"
+          - "Session 3-4 Practice Chatbot with Multiple Tools.ipynb"
   page-footer:
     left: "Connect AI with Business Systems using REST (ICTPRG553) course materials"
     right:

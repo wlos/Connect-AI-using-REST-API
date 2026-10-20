@@ -32,13 +32,21 @@ flowchart LR
 ::: {.session-card}
 ### [Session 1: Introduction to Connect AI with Business Systems using REST](<Session 1 Introduction to Connect AI with Business Systems using REST.ipynb>)
 
-Explore the 10-week course roadmap and core REST architectural principles. Master client-server interaction, HTTP requests and responses, status codes, and authentication vs authorisation. Query real-world APIs with arXiv (XML) and NASA APOD (JSON), and compare their data structures in Python.
+Explore the 10-week course roadmap and core REST architectural principles. Master client-server interaction, HTTP requests and responses, status codes, and authentication vs authorisation. Query arXiv (XML), NASA APOD (JSON), and WeatherAPI (nested JSON), and compare their data structures in Python.
 :::
 
 ::: {.session-card}
 ### [Session 2: Creating APIs with FastAPI](<Session 2 Creating APIs with FastAPI.ipynb>)
 
-Collect 50 arXiv papers into CSV, create a FastAPI service that reads the catalogue and stores research notes, and build a Python client that reads and writes through HTTP.
+Build a FastAPI server, wrap WeatherAPI forecasts, validate parameters and response models, explore automatic documentation, and add weather-summary and arXiv-search endpoints.
+:::
+
+::: {.session-card}
+### [Session 3-4: Building a Chatbot with an LLM API](<Session 3-4 Building a Chatbot with an LLM API.ipynb>)
+
+Explore text input and output with LLM APIs, call Gemini and OpenRouter, build a multi-turn chatbot, and reuse the Session 2 weather function with Function Calling. Examine JSON Schema tool definitions and prepare for MCP.
+
+[Download the weather chatbot](assets/session3/weather_chatbot.py) · [Practise with multiple tools](<Session 3-4 Practice Chatbot with Multiple Tools.ipynb>)
 :::
 
 :::

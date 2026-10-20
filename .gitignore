@@ -12,3 +12,6 @@ archive/
 # Local project instructions and configuration
 AGENTS.md
 .codex/
+
+/.quarto/
+**/*.quarto_ipynb

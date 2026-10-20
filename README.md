@@ -2,6 +2,8 @@
 
 This repository hosts teaching notebooks and website materials for the 10-week skill set course **Connect AI with Business Systems using REST**, mapped to the Australian vocational competency unit **ICTPRG553 Create and develop REST APIs**.
 
+- **Course Website (GitHub Pages):** [https://wlos.github.io/Connect-AI-using-REST-API/](https://wlos.github.io/Connect-AI-using-REST-API/)
+
 ## Course Structure
 
 - **Weeks 1–4**: REST API Foundation & FastAPI Backend Development

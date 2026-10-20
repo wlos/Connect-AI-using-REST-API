@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="450" viewBox="0 100 1200 450" role="img" aria-labelledby="title desc">
+  <title id="title">One FastAPI application, two HTTP roles</title>
+  <desc id="desc">Read steps 1 to 4. A Python client requests weather from FastAPI. FastAPI acts as a client to request data from WeatherAPI, receives detailed JSON, then shapes it into a simpler JSON response for the Python client. The WeatherAPI key is stored on the FastAPI server.</desc>
+  <defs>
+    <marker id="blue" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M1 1 9 5 1 9" fill="none" stroke="#2563eb" stroke-width="1.8"/></marker>
+    <marker id="green" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M1 1 9 5 1 9" fill="none" stroke="#087f6d" stroke-width="1.8"/></marker>
+    <style>
+      text { font-family: Arial, Helvetica, sans-serif; fill: #172b45; }
+      .heading { font-size: 23px; font-weight: 700; }
+      .body { font-size: 19px; }
+      .mono { font-family: 'DejaVu Sans Mono', monospace; font-size: 17px; }
+      .muted { fill: #52657d; }
+      .number { fill: white; font-size: 18px; font-weight: 700; text-anchor: middle; }
+    </style>
+  </defs>
+  <rect x="1" y="101" width="1198" height="448" rx="20" fill="#f8fafc" stroke="#d9e2ee"/>
+  <rect x="40" y="116" width="780" height="410" rx="16" fill="#eef4ff" stroke="#cad9f3"/>
+  <text x="60" y="147" class="body muted">YOUR COMPUTER</text>
+  <rect x="848" y="116" width="312" height="410" rx="16" fill="#f0f6f5" stroke="#cedfdb"/>
+  <text x="868" y="147" class="body muted">EXTERNAL SERVICE</text>
+
+  <rect x="68" y="176" width="212" height="104" rx="12" fill="white" stroke="#b6c8e3"/>
+  <text x="174" y="213" class="heading" text-anchor="middle">Python client</text>
+  <text x="174" y="245" class="body muted" text-anchor="middle">Starts the request</text>
+
+  <rect x="330" y="176" width="440" height="104" rx="12" fill="white" stroke="#2563eb" stroke-width="2"/>
+  <text x="550" y="210" class="heading" text-anchor="middle">Your FastAPI application</text>
+  <text x="440" y="247" class="body" text-anchor="middle" style="fill:#2563eb">SERVER</text>
+  <text x="660" y="247" class="body" text-anchor="middle" style="fill:#2563eb">CLIENT</text>
+  <path d="M550 230 V260" stroke="#d4dfed"/>
+
+  <rect x="875" y="176" width="258" height="104" rx="12" fill="white" stroke="#9ebfb7"/>
+  <text x="1004" y="213" class="heading" text-anchor="middle">WeatherAPI</text>
+  <text x="1004" y="245" class="body muted" text-anchor="middle">Weather data server</text>
+
+  <path d="M174 293 V495 M440 293 V495 M660 293 V495 M1004 293 V495" stroke="#c6d2e2" stroke-width="2" stroke-dasharray="5 7"/>
+  <g>
+    <circle cx="103" cy="321" r="15" fill="#2563eb"/><text x="103" y="327" class="number">1</text>
+    <text x="127" y="327" class="mono">GET /weather/?city=Perth</text>
+    <path d="M174 344 H440" fill="none" stroke="#2563eb" stroke-width="2.5" marker-end="url(#blue)"/>
+    <circle cx="645" cy="321" r="15" fill="#2563eb"/><text x="645" y="327" class="number">2</text>
+    <text x="669" y="327" class="mono">GET /v1/current.json</text>
+    <path d="M660 344 H1004" fill="none" stroke="#2563eb" stroke-width="2.5" marker-end="url(#blue)"/>
+    <text x="819" y="371" class="mono muted" text-anchor="middle">key + q=Perth</text>
+  </g>
+  <g>
+    <circle cx="722" cy="409" r="15" fill="#087f6d"/><text x="722" y="415" class="number">3</text>
+    <text x="746" y="415" class="body">Detailed weather JSON</text>
+    <path d="M1004 432 H660" fill="none" stroke="#087f6d" stroke-width="2.5" marker-end="url(#green)"/>
+    <path d="M660 432 H440" fill="none" stroke="#087f6d" stroke-width="2.5"/>
+    <rect x="467" y="415" width="166" height="34" rx="17" fill="#d6eee7" stroke="#a3d2c4"/>
+    <text x="550" y="438" font-size="17" text-anchor="middle" style="fill:#066654">Shape the data</text>
+    <circle cx="116" cy="464" r="15" fill="#087f6d"/><text x="116" y="470" class="number">4</text>
+    <text x="140" y="470" class="body">Simplified weather JSON</text>
+    <path d="M440 489 H174" fill="none" stroke="#087f6d" stroke-width="2.5" marker-end="url(#green)"/>
+  </g>
+
+</svg>

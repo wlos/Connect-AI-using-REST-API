@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="422" viewBox="0 0 1440 422" role="img" aria-labelledby="title description">
+  <title id="title">LLM API: text in, text out</title>
+  <desc id="description">A text prompt enters an LLM API in an HTTP POST request. The API uses an endpoint, an API key and a selected model. A JSON response returns generated text to the application. The example translates Bonjour into Hello.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#39728e"/>
+    </marker>
+  </defs>
+  <rect width="1440" height="422" rx="24" fill="#f4f8fb"/>
+  <g font-family="Arial, Helvetica, sans-serif" transform="translate(0 -174)">
+
+    <rect x="64" y="230" width="330" height="310" rx="18" fill="#ffffff" stroke="#bcd3e6" stroke-width="2"/>
+    <rect x="64" y="230" width="330" height="7" rx="3" fill="#0066cc"/>
+    <text x="90" y="279" font-size="16" font-weight="700" letter-spacing="1.5" fill="#0066cc">1  INPUT</text>
+    <text x="90" y="321" font-size="30" font-weight="700" fill="#172033">Text prompt</text>
+    <text x="90" y="355" font-size="18" fill="#5c6577">Instruction + user text</text>
+    <rect x="88" y="385" width="282" height="112" rx="10" fill="#eef5ff"/>
+    <text x="108" y="418" font-size="19" fill="#172033">Translate into English:</text>
+    <text x="108" y="458" font-size="25" font-weight="700" fill="#003d7a">Bonjour</text>
+
+    <path d="M 405 378 H 520" stroke="#39728e" stroke-width="3" fill="none" marker-end="url(#arrow)"/>
+    <text x="463" y="333" text-anchor="middle" font-size="16" font-weight="700" fill="#39728e">POST request</text>
+    <text x="463" y="360" text-anchor="middle" font-size="16" fill="#5c6577">JSON</text>
+
+    <rect x="534" y="210" width="372" height="350" rx="18" fill="#003d7a"/>
+    <text x="564" y="257" font-size="16" font-weight="700" letter-spacing="1.5" fill="#99e5e5">2  LLM API</text>
+    <text x="564" y="300" font-size="30" font-weight="700" fill="#ffffff">Language model</text>
+    <text x="564" y="334" font-size="18" fill="#d1e5f5">Generates a response to the prompt</text>
+    <path d="M 564 359 H 876" stroke="#507ca6" stroke-width="1"/>
+    <text x="564" y="392" font-size="18" font-weight="700" fill="#ffffff">Endpoint</text>
+    <text x="564" y="417" font-size="16" fill="#d1e5f5">Where to send the request</text>
+    <text x="564" y="453" font-size="18" font-weight="700" fill="#ffffff">API key</text>
+    <text x="564" y="478" font-size="16" fill="#d1e5f5">Authenticates access</text>
+    <text x="564" y="514" font-size="18" font-weight="700" fill="#ffffff">Model ID</text>
+    <text x="564" y="539" font-size="16" fill="#d1e5f5">Selects the language model</text>
+
+    <path d="M 918 378 H 1033" stroke="#39728e" stroke-width="3" fill="none" marker-end="url(#arrow)"/>
+    <text x="976" y="333" text-anchor="middle" font-size="16" font-weight="700" fill="#39728e">Response</text>
+    <text x="976" y="360" text-anchor="middle" font-size="16" fill="#5c6577">JSON</text>
+
+    <rect x="1046" y="230" width="330" height="310" rx="18" fill="#ffffff" stroke="#a8d7d4" stroke-width="2"/>
+    <rect x="1046" y="230" width="330" height="7" rx="3" fill="#008080"/>
+    <text x="1072" y="279" font-size="16" font-weight="700" letter-spacing="1.5" fill="#008080">3  OUTPUT</text>
+    <text x="1072" y="321" font-size="30" font-weight="700" fill="#172033">Generated text</text>
+    <text x="1072" y="355" font-size="18" fill="#5c6577">Extracted by your application</text>
+    <rect x="1070" y="385" width="282" height="112" rx="10" fill="#edf8f5"/>
+    <text x="1090" y="418" font-size="19" fill="#172033">Translation:</text>
+    <text x="1090" y="458" font-size="25" font-weight="700" fill="#006b65">Hello</text>
+
+  </g>
+</svg>
