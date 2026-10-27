@@ -57,10 +57,24 @@ mapping_tool_function = {
     "get_weather": get_weather,
 }
 
-
 def execute_tool(tool_name, tool_args):
-    """Run the mapped Python function with the model's proposed arguments."""
-    return mapping_tool_function[tool_name](**tool_args)
+    """Run the mapped Python function and print its inputs and result."""
+    print(f"\n[Tool call] {tool_name}", flush=True)
+    print(
+        "[Tool arguments]",
+        json.dumps(tool_args, ensure_ascii=False),
+        flush=True,
+    )
+
+    # Unpack the arguments and call the selected local function.
+    result = mapping_tool_function[tool_name](**tool_args)
+
+    print(
+        "[Tool result]",
+        json.dumps(result, ensure_ascii=False, indent=2),
+        flush=True,
+    )
+    return result
 
 def send_messages(messages, tools=None, tool_choice="auto"):
     """Send a conversation with optional tools to the selected API."""
