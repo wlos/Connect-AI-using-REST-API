@@ -22,7 +22,6 @@ project:
     - "Session 3-4 Building a Chatbot with an LLM API.ipynb"
     - "practice/session3/Session 3-4 Practice Chatbot with Multiple Tools.ipynb"
     - "Session 5 Introduction to MCP.ipynb"
-    - "practice/session5/Session 5 Practice MCP Server and Client.ipynb"
 
 website:
   title: "Connect AI with Business Systems using REST"
@@ -70,7 +69,7 @@ format:
     toc-depth: 3
     toc-expand: true
     code-copy: true
-    code-overflow: wrap
+    code-overflow: scroll
     smooth-scroll: true
 
 execute:

@@ -1,4 +1,4 @@
-"""Provide the multiple-tools practice functions through a stdio MCP server."""
+"""Provide weather and research tools through an HTTP or stdio MCP server."""
 
 import requests
 from fastmcp import FastMCP
@@ -103,5 +103,12 @@ def search_papers(query: str, max_results: int = 5) -> list[dict]:
 
 
 if __name__ == "__main__":
-    # The chatbot launches this process and uses stdin/stdout for MCP messages.
-    mcp.run(transport="stdio")
+    import argparse
+
+    parser = argparse.ArgumentParser(description="Run the multi-tool MCP server.")
+    parser.add_argument("--transport", choices=("http", "stdio"), default="stdio")
+    args = parser.parse_args()
+    if args.transport == "stdio":
+        mcp.run(transport="stdio")  # Use stdin/stdout for a client-managed subprocess.
+    else:
+        mcp.run(transport="http", host="127.0.0.1", port=8001)  # Serve /mcp locally.

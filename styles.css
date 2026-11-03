@@ -106,6 +106,15 @@ pre {
   border-radius: 0.4rem;
 }
 
+/* Ensure code cells do not auto-wrap and scroll horizontally. */
+pre > code.sourceCode,
+.cell-code pre code,
+.quarto-notebook .cell-code code {
+  white-space: pre;
+  word-break: normal;
+  overflow-wrap: normal;
+}
+
 /* Keep wide Markdown and notebook-output tables inside the page layout. */
 main.content,
 .page-columns,

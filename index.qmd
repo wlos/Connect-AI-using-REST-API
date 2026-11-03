@@ -54,7 +54,7 @@ Explore text input and output with LLM APIs, call Gemini and OpenRouter, build a
 
 Explain MCP hosts, clients and servers, compare transports, and build a weather server with FastMCP. Connect MCP discovery and execution to the chatbot's Function Calling loop.
 
-[Download the MCP chatbot](practice/session5/mcp_chatbot.py) · [Practise MCP servers and clients](<practice/session5/Session 5 Practice MCP Server and Client.ipynb>)
+[Download the MCP chatbot](practice/session5/mcp_chatbot.py)
 :::
 
 :::
