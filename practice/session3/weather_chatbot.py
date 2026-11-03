@@ -5,8 +5,8 @@ import json
 import requests
 
 CHAT_URL = "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions"
-CHAT_API_KEY = "YOUR_GEMINI_API_KEY"  # Replace with your actual Gemini API key.
-CHAT_MODEL = "gemini-3.8-flash"
+CHAT_API_KEY = "YOUR_GEMINI_API_KEY"
+CHAT_MODEL = "gemini-3.6-flash"
 
 # To use OpenRouter, replace the three settings above with these values.
 # CHAT_URL = "https://openrouter.ai/api/v1/chat/completions"
@@ -37,18 +37,21 @@ def get_weather(city: str):
 
 tools = [
     {
-        "name": "get_weather",
-        "description": "Get current weather for a city in degrees Celsius. Not a forecast.",
-        "input_schema": {
-            "type": "object",
-            "properties": {
-                "city": {
-                    "type": "string",
-                    "description": "City name, such as Perth, Australia.",
-                }
+        "type": "function",
+        "function": {
+            "name": "get_weather",
+            "description": "Get current weather for a city in degrees Celsius. Not a forecast.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "city": {
+                        "type": "string",
+                        "description": "City name, such as Perth, Australia.",
+                    }
+                },
+                "required": ["city"],
+                "additionalProperties": False,
             },
-            "required": ["city"],
-            "additionalProperties": False,
         },
     }
 ]
@@ -58,75 +61,110 @@ mapping_tool_function = {
 }
 
 def execute_tool(tool_name, tool_args):
-    """Run the mapped Python function and print its inputs and result."""
-    print(f"\n[Tool call] {tool_name}", flush=True)
-    print(
-        "[Tool arguments]",
-        json.dumps(tool_args, ensure_ascii=False),
-        flush=True,
-    )
-
+    """Run a local tool and format its result as text for the model."""
     # Unpack the arguments and call the selected local function.
     result = mapping_tool_function[tool_name](**tool_args)
-
-    print(
-        "[Tool result]",
-        json.dumps(result, ensure_ascii=False, indent=2),
-        flush=True,
-    )
+    if result is None:
+        result = "The operation completed but didn't return any results."
+    elif isinstance(result, list):
+        result = ", ".join(str(item) for item in result)
+    elif isinstance(result, dict):
+        # Convert dictionaries to formatted JSON strings.
+        result = json.dumps(result, ensure_ascii=False, indent=2)
+    else:
+        result = str(result)
     return result
 
-def send_messages(messages, tools=None, tool_choice="auto"):
-    """Send a conversation with optional tools to the selected API."""
-    payload = {"model": CHAT_MODEL, "messages": messages}
-    if tools is not None:
-        api_tools = [
-            {
-                "type": "function",
-                "function": {
-                    "name": tool["name"],
-                    "description": tool["description"],
-                    "parameters": tool["input_schema"],  # Use the API's field name.
-                },
-            }
-            for tool in tools
-        ]
-        payload.update(tools=api_tools, tool_choice=tool_choice)
-    response = requests.post(
+def read_stream_deltas(response):
+    """Read text and tool fragments from the API's SSE data lines."""
+    # A small chunk_size avoids buffering short replies before displaying them.
+    for line in response.iter_lines(chunk_size=1, decode_unicode=True):
+        if not line.startswith("data:"):
+            continue  # Skip blank lines and keep-alive comments.
+        data = line[5:].strip()
+        if data == "[DONE]":
+            return
+        chunk = json.loads(data)
+        if chunk.get("error"):
+            raise RuntimeError(chunk["error"])
+        for choice in chunk.get("choices", []):
+            if choice.get("finish_reason") not in (None, "stop", "tool_calls"):
+                raise RuntimeError(f"Incomplete model response: {choice['finish_reason']}")
+            yield choice.get("delta", {})
+    raise RuntimeError("The model response stream ended before [DONE].")
+
+
+def send_messages(messages):
+    """Print streamed text and return the assembled assistant message."""
+    # stream requests incremental responses from the model API.
+    payload = {"model": CHAT_MODEL, "messages": messages, "tools": tools, "stream": True}
+    message = {"role": "assistant", "content": ""}
+    tool_calls = {}
+    with requests.post(
         CHAT_URL,
         headers={"Authorization": f"Bearer {CHAT_API_KEY}"},
         json=payload,
-        timeout=60,
-    )
-    response.raise_for_status()
-    return response.json()["choices"][0]["message"]
+        stream=True,  # Read the HTTP response incrementally.
+        timeout=(10, 60),  # Connection timeout and wait between received data.
+    ) as response:
+        response.raise_for_status()
+        response.encoding = "utf-8"
+        for delta in read_stream_deltas(response):
+            text = delta.get("content")
+            if text:
+                if not message["content"]:
+                    print("Assistant: ", end="", flush=True)
+                print(text, end="", flush=True)
+                message["content"] += text
+
+            # Group fragments by index; parallel tool calls may be interleaved.
+            for fragment in delta.get("tool_calls") or []:
+                index = fragment.get("index", 0)
+                if index not in tool_calls:
+                    tool_calls[index] = {
+                        "id": "",
+                        "type": "function",
+                        "function": {"name": "", "arguments": ""},
+                    }
+                call = tool_calls[index]
+                for key, value in fragment.items():
+                    if key not in ("index", "function"):
+                        # Preserve provider metadata, including thought signatures.
+                        call[key] = value
+                function = fragment.get("function") or {}
+                for key in ("name", "arguments"):
+                    call["function"][key] += function.get(key) or ""
+    if message["content"]:
+        print(flush=True)
+    if tool_calls:
+        message["tool_calls"] = [tool_calls[index] for index in sorted(tool_calls)]
+    return message
 
 def chat(user_message: str) -> str:
     """Complete a chat turn, running any requested weather tools."""
     pending = conversation + [{"role": "user", "content": user_message}]
-    response = send_messages(pending, tools=tools)
-    pending.append(response)  # Preserve the full reply, including tool calls and their IDs.
-
-    if response.get("tool_calls"):
+    while True:
+        response = send_messages(pending)
+        pending.append(response)  # Preserve the text, tool calls and their IDs.
+        if not response.get("tool_calls"):
+            break  # A text answer with no tool calls completes the turn.
         for call in response["tool_calls"]:
             tool_name = call["function"]["name"]
             tool_args = json.loads(call["function"]["arguments"])  # Read the JSON arguments.
+            print(f"Calling tool {tool_name} with args {tool_args}", flush=True)
             result = execute_tool(tool_name, tool_args)  # Run the mapped Python function.
             pending.append({
                 "role": "tool",
                 "tool_call_id": call["id"],
-                "content": json.dumps(result),
+                "content": result,  # execute_tool has already converted the result to text.
             })
-        response = send_messages(pending, tools=tools, tool_choice="none")
-        pending.append(response)
 
     conversation[:] = pending  # Save the complete turn after the requests succeed.
     return response["content"]
 
 system_prompt = (
-    "You are a friendly weather assistant. Use Australian English. "
-    "Use get_weather for current observations and do not invent weather data. "
-    "Ask for a city when it is missing. This tool does not provide forecasts."
+    "You are a weather assistant. Use Australian English. "
+    "Do not invent weather data. Ask for a city when it is missing."
 )
 conversation = [{"role": "system", "content": system_prompt}]
 
@@ -144,7 +182,7 @@ def main():
             break
         if not user_content:
             continue
-        print("Assistant:", chat(user_content))
+        chat(user_content)  # send_messages prints each text fragment as it arrives.
 
 
 if __name__ == "__main__":
