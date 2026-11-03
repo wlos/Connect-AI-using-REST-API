@@ -46,7 +46,7 @@ Build a FastAPI server, wrap WeatherAPI forecasts, validate parameters and respo
 
 Explore text input and output with LLM APIs, call Gemini and OpenRouter, build a multi-turn chatbot, and reuse the Session 2 weather function with Function Calling. Examine JSON Schema tool definitions and prepare for MCP.
 
-[Download the weather chatbot](assets/session3/weather_chatbot.py) · [Practise with multiple tools](<Session 3-4 Practice Chatbot with Multiple Tools.ipynb>)
+[Download the weather chatbot](practice/session3/weather_chatbot.py) · [Practise with multiple tools](<practice/session3/Session 3-4 Practice Chatbot with Multiple Tools.ipynb>)
 :::
 
 :::
