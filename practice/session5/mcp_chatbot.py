@@ -78,7 +78,7 @@ class MCPChatbot:
         if not self.api_url.startswith(("https://", "http://")):
             raise ValueError("CHAT_URL must be an HTTP or HTTPS API endpoint.")
 
-    async def mcp_tools_to_function_declarations(self):
+    async def mcp_tools_to_llm(self):
         """Convert discovered MCP tools to the LLM's function declaration format."""
         tools = await self.client.list_tools()
         return [
@@ -92,8 +92,8 @@ class MCPChatbot:
 
     async def execute_tool(self, tool_name, tool_args):
         """Check the discovered tool name, invoke MCP and return text to the LLM."""
-        names = {tool["function"]["name"] for tool in self.available_tools}
-        if tool_name not in names:
+        tool_names = {tool["function"]["name"] for tool in self.available_tools}
+        if tool_name not in tool_names:
             raise ValueError(f"Tool was not discovered on this server: {tool_name}")
         result = await self.client.call_tool(tool_name, tool_args)
         return result_text(result)
@@ -102,11 +102,11 @@ class MCPChatbot:
         """Discover tools once and keep the MCP connection open for the chat."""
         self.validate_settings()
         async with self.client:
-            self.available_tools = await self.mcp_tools_to_function_declarations()
-            names = {tool["function"]["name"] for tool in self.available_tools}
-            if not names:
+            self.available_tools = await self.mcp_tools_to_llm()
+            tool_names = {tool["function"]["name"] for tool in self.available_tools}
+            if not tool_names:
                 raise ValueError("The server did not publish any tools.")
-            print("Connected to server with tools:", sorted(names))
+            print("Connected to server with tools:", sorted(tool_names))
             await self.chat_loop()
 
     def send_messages(self, messages):
