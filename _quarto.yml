@@ -2,29 +2,37 @@ project:
   type: website
   output-dir: _site
   resources:
-    - assets/session2/setup_api_ss.bat
-    - assets/session2/main.py
-    - assets/session2/stage3_weather.py
-    - assets/session2/stage2_demo.py
-    - practice/session3/weather_chatbot.py
-    - practice/session5/weather_mcp_server.py
-    - assets/session5/requirements.txt
-    - practice/session5/setup_mcp_ss.bat
-    - practice/session5/mcp_chatbot.py
-    - practice/session5/mcp_client.py
-    - practice/session5/mcp_client_stdio.py
-    - practice/session5/multi_tool_mcp_server.py
-    - practice/session5/mcp_multi_tool_chatbot.py
+    - mindmap.html
+    - images/build-ai-apps-banner.png
+    - images/build-ai-apps-roadmap.png
+    - 01-Introduction-to-REST-API/sample_data/historical_weather.csv
+    - 01-Introduction-to-REST-API/sample_data/retail_sales.csv
+    - 02-Creating-APIs-with-FastAPI/practice/setup_api_ss.bat
+    - 02-Creating-APIs-with-FastAPI/practice/main.py
+    - 02-Creating-APIs-with-FastAPI/practice/stage3_weather.py
+    - 02-Creating-APIs-with-FastAPI/practice/stage2_demo.py
+    - 02-Creating-APIs-with-FastAPI/sample_data/notes.json
+    - 02-Creating-APIs-with-FastAPI/sample_data/papers.csv
+    - 02-Creating-APIs-with-FastAPI/sample_data/retail_sales.csv
+    - 03-04-Building-a-Chatbot-with-LLM-API/practice/weather_chatbot.py
+    - "03-04-Building-a-Chatbot-with-LLM-API/practice/Session 3-4 Practice Chatbot with Multiple Tools.ipynb"
+    - 05-Introduction-to-MCP/practice/weather_mcp_server.py
+    - 05-Introduction-to-MCP/practice/requirements.txt
+    - 05-Introduction-to-MCP/practice/setup_mcp_ev.bat
+    - 05-Introduction-to-MCP/practice/mcp_chatbot.py
+    - 05-Introduction-to-MCP/practice/mcp_client.py
+    - 05-Introduction-to-MCP/practice/mcp_client_stdio.py
+    - 05-Introduction-to-MCP/practice/multi_tool_mcp_server.py
+    - 05-Introduction-to-MCP/practice/mcp_multi_tool_chatbot.py
   render:
     - index.qmd
-    - "Session 1 Introduction to Connect AI with Business Systems using REST.ipynb"
-    - "Session 2 Creating APIs with FastAPI.ipynb"
-    - "Session 3-4 Building a Chatbot with an LLM API.ipynb"
-    - "practice/session3/Session 3-4 Practice Chatbot with Multiple Tools.ipynb"
-    - "Session 5 Introduction to MCP.ipynb"
+    - "01-Introduction-to-REST-API/Session 1 Introduction to Connect AI with Business Systems using REST.ipynb"
+    - "02-Creating-APIs-with-FastAPI/Session 2 Creating APIs with FastAPI.ipynb"
+    - "03-04-Building-a-Chatbot-with-LLM-API/Session 3-4 Building a Chatbot with an LLM API.ipynb"
+    - "05-Introduction-to-MCP/Session 5 Introduction to MCP.ipynb"
 
 website:
-  title: "Connect AI with Business Systems using REST"
+  title: "Build AI Apps with REST API & MCP"
   site-url: "https://wlos.github.io/Connect-AI-using-REST-API/"
   repo-url: "https://github.com/wlos/Connect-AI-using-REST-API"
   repo-actions:
@@ -34,27 +42,36 @@ website:
     left:
       - text: "Home"
         href: index.qmd
+      - text: "Mindmap"
+        href: mindmap.html
       - text: "Session 1"
-        href: "Session 1 Introduction to Connect AI with Business Systems using REST.ipynb"
+        href: "01-Introduction-to-REST-API/Session 1 Introduction to Connect AI with Business Systems using REST.ipynb"
       - text: "Session 2"
-        href: "Session 2 Creating APIs with FastAPI.ipynb"
-      - text: "Session 3-4"
-        href: "Session 3-4 Building a Chatbot with an LLM API.ipynb"
+        href: "02-Creating-APIs-with-FastAPI/Session 2 Creating APIs with FastAPI.ipynb"
+      - text: "Sessions 3–4"
+        href: "03-04-Building-a-Chatbot-with-LLM-API/Session 3-4 Building a Chatbot with an LLM API.ipynb"
       - text: "Session 5"
-        href: "Session 5 Introduction to MCP.ipynb"
+        href: "05-Introduction-to-MCP/Session 5 Introduction to MCP.ipynb"
   sidebar:
     style: floating
     search: true
     contents:
-      - index.qmd
+      - text: "Home"
+        href: index.qmd
+      - text: "Course Mindmap"
+        href: mindmap.html
       - section: "Course Sessions"
         contents:
-          - "Session 1 Introduction to Connect AI with Business Systems using REST.ipynb"
-          - "Session 2 Creating APIs with FastAPI.ipynb"
-          - "Session 3-4 Building a Chatbot with an LLM API.ipynb"
-          - "Session 5 Introduction to MCP.ipynb"
+          - text: "Session 1: Introduction to REST API"
+            href: "01-Introduction-to-REST-API/Session 1 Introduction to Connect AI with Business Systems using REST.ipynb"
+          - text: "Session 2: Creating APIs with FastAPI"
+            href: "02-Creating-APIs-with-FastAPI/Session 2 Creating APIs with FastAPI.ipynb"
+          - text: "Sessions 3–4: Chatbot with LLM API"
+            href: "03-04-Building-a-Chatbot-with-LLM-API/Session 3-4 Building a Chatbot with an LLM API.ipynb"
+          - text: "Session 5: Introduction to MCP"
+            href: "05-Introduction-to-MCP/Session 5 Introduction to MCP.ipynb"
   page-footer:
-    left: "Connect AI with Business Systems using REST (ICTPRG553) course materials"
+    left: "Build AI Apps with REST API & MCP (ICTPRG553) course materials"
     right:
       - icon: github
         href: "https://github.com/wlos/Connect-AI-using-REST-API"

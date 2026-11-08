@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Build AI Apps with REST API & MCP — Interactive Course Mindmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: #ffffff;
+}
+.markmap {
+  width: 100vw;
+  height: 100vh;
+}
+.markmap > svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.nav-header {
+  position: absolute;
+  top: 16px;
+  left: 20px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid #d0d7de;
+  border-radius: 24px;
+  color: #1f2937;
+  text-decoration: none;
+  font-size: 13.5px;
+  font-weight: 600;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  transition: all 0.2s ease;
+}
+.nav-btn:hover {
+  background: #f3f4f6;
+  border-color: #0066cc;
+  color: #0066cc;
+  transform: translateY(-1px);
+}
+.toolbar-group {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid #d0d7de;
+  border-radius: 24px;
+  padding: 3px 6px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+.tool-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 11px;
+  background: transparent;
+  border: none;
+  border-radius: 18px;
+  color: #374151;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.tool-btn:hover {
+  background: #f3f4f6;
+  color: #0066cc;
+}
+.tool-btn:active {
+  background: #e5e7eb;
+}
+.tool-btn svg {
+  width: 15px;
+  height: 15px;
+  fill: currentColor;
+}
+.tool-divider {
+  width: 1px;
+  height: 16px;
+  background: #e5e7eb;
+  margin: 0 3px;
+}
+.nav-title {
+  padding: 6px 14px;
+  background: rgba(243, 244, 246, 0.95);
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: #4b5563;
+}
+.markmap a {
+  color: #0066cc;
+  text-decoration: none;
+  transition: color 0.15s ease, text-decoration 0.15s ease;
+}
+.markmap a:hover {
+  color: #003d7a;
+  text-decoration: underline;
+}
+@media (max-width: 960px) {
+  .nav-title {
+    display: none;
+  }
+}
+@media (max-width: 680px) {
+  .tool-btn span {
+    display: none;
+  }
+  .tool-btn {
+    padding: 6px 8px;
+  }
+}
+</style>
+<script>
+window.markmap = window.markmap || {};
+let markmapInstance = null;
+
+let _markmap = undefined;
+Object.defineProperty(window.markmap, 'Markmap', {
+  configurable: true,
+  enumerable: true,
+  get() { return _markmap; },
+  set(originalClass) {
+    _markmap = originalClass;
+    const origCreate = originalClass.create;
+    _markmap.create = function(svg, opts, data) {
+      const mm = origCreate.call(originalClass, svg, opts, data);
+      markmapInstance = mm;
+      window.mm = mm;
+      return mm;
+    };
+  }
+});
+</script>
+<script src="https://cdn.jsdelivr.net/npm/markmap-autoloader"></script>
+</head>
+<body>
+<div class="nav-header">
+  <a href="index.html" class="nav-btn">← Back to Course</a>
+
+  <div class="toolbar-group">
+    <button id="btn-zoom-in" class="tool-btn" title="Zoom in">
+      <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+      <span>Zoom In</span>
+    </button>
+    <button id="btn-zoom-out" class="tool-btn" title="Zoom out">
+      <svg viewBox="0 0 24 24"><path d="M19 13H5v-2h14v2z"/></svg>
+      <span>Zoom Out</span>
+    </button>
+    <div class="tool-divider"></div>
+    <button id="btn-fit" class="tool-btn" title="Fit to screen (Recentre view)">
+      <svg viewBox="0 0 24 24"><path d="M5 5h5V3H3v7h2V5zm14-2h-7v2h5v5h2V3zm-2 16h-5v2h7v-7h-2v5zM5 14H3v7h7v-2H5v-5z"/></svg>
+      <span>Fit to Screen</span>
+    </button>
+    <div class="tool-divider"></div>
+    <button id="btn-expand" class="tool-btn" title="Expand all branches">
+      <svg viewBox="0 0 24 24"><path d="M12 5.83L15.17 9l1.41-1.41L12 3 7.41 7.59 8.83 9 12 5.83zm0 12.34L8.83 15l-1.41 1.41L12 21l4.59-4.59L15.17 15 12 18.17z"/></svg>
+      <span>Expand All</span>
+    </button>
+    <button id="btn-collapse" class="tool-btn" title="Collapse detailed branches">
+      <svg viewBox="0 0 24 24"><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></svg>
+      <span>Collapse All</span>
+    </button>
+  </div>
+
+  <span class="nav-title">🗺️ Click links to open lecture sections in new tab · Pan & Zoom supported</span>
+</div>
+
+<div class="markmap">
+<script type="text/template">
+# [Build AI Apps with REST API & MCP](index.html)
+
+## [01 Introduction to REST API](01-Introduction-to-REST-API/Session%201%20Introduction%20to%20Connect%20AI%20with%20Business%20Systems%20using%20REST.html)
+- [1. Course Overview](01-Introduction-to-REST-API/Session%201%20Introduction%20to%20Connect%20AI%20with%20Business%20Systems%20using%20REST.html#course-overview)
+  - 10-week roadmap & competencies
+  - Unit ICTPRG553 requirements
+- [2. Introduction to REST API](01-Introduction-to-REST-API/Session%201%20Introduction%20to%20Connect%20AI%20with%20Business%20Systems%20using%20REST.html#introduction-to-rest-api)
+  - [Architectural Principles of REST](01-Introduction-to-REST-API/Session%201%20Introduction%20to%20Connect%20AI%20with%20Business%20Systems%20using%20REST.html#architectural-principles-of-rest)
+  - [Client and Server Roles](01-Introduction-to-REST-API/Session%201%20Introduction%20to%20Connect%20AI%20with%20Business%20Systems%20using%20REST.html#client-and-server)
+  - [HTTP Request Anatomy](01-Introduction-to-REST-API/Session%201%20Introduction%20to%20Connect%20AI%20with%20Business%20Systems%20using%20REST.html#http-request)
+    - GET, POST, PUT, DELETE methods
+    - Headers & payload encoding
+  - [HTTP Response Anatomy](01-Introduction-to-REST-API/Session%201%20Introduction%20to%20Connect%20AI%20with%20Business%20Systems%20using%20REST.html#http-response)
+    - Status code families (2xx, 3xx, 4xx, 5xx)
+    - Critical codes (200, 201, 400, 401, 403, 404, 500)
+  - [Authentication and Authorisation](01-Introduction-to-REST-API/Session%201%20Introduction%20to%20Connect%20AI%20with%20Business%20Systems%20using%20REST.html#authentication-and-authorisation-authn-authz)
+    - API keys & Bearer tokens
+- [3. Case 1: Search arXiv (XML)](01-Introduction-to-REST-API/Session%201%20Introduction%20to%20Connect%20AI%20with%20Business%20Systems%20using%20REST.html#case-1-search-arxiv-an-xml-response)
+  - Postman / Hoppscotch manual inspection
+  - Parsing XML Atom feeds with ElementTree
+- [4. Case 2: NASA APOD (JSON)](01-Introduction-to-REST-API/Session%201%20Introduction%20to%20Connect%20AI%20with%20Business%20Systems%20using%20REST.html#case-2-nasa-apod-a-json-response)
+  - Extracting nested JSON attributes
+  - XML vs JSON architectural comparison
+- [5. Case 3: WeatherAPI (Structured JSON)](01-Introduction-to-REST-API/Session%201%20Introduction%20to%20Connect%20AI%20with%20Business%20Systems%20using%20REST.html#case-3-weatherapi-current-and-historical-weather)
+  - Current & historical weather endpoints
+
+## [02 Creating APIs with FastAPI](02-Creating-APIs-with-FastAPI/Session%202%20Creating%20APIs%20with%20FastAPI.html)
+- [1. Client/Server Architecture](02-Creating-APIs-with-FastAPI/Session%202%20Creating%20APIs%20with%20FastAPI.html#clientserver-architecture)
+  - Dual roles: FastAPI as server and HTTP client
+- [2. Your First FastAPI Application](02-Creating-APIs-with-FastAPI/Session%202%20Creating%20APIs%20with%20FastAPI.html#your-first-fastapi-application)
+  - FastAPI instance & route decorators
+  - Interactive Swagger UI (`/docs`) & ReDoc
+- [3. Weather Microservice](02-Creating-APIs-with-FastAPI/Session%202%20Creating%20APIs%20with%20FastAPI.html#wrap-a-real-api-a-weather-microservice)
+  - Securely encapsulating WeatherAPI keys
+  - Request shaping & JSON payload filtering
+- [4. Pydantic Response Models](02-Creating-APIs-with-FastAPI/Session%202%20Creating%20APIs%20with%20FastAPI.html#pydantic-response-models)
+  - Strict type contracts & data validation
+  - Inspecting schema contracts offline
+- [5. Expanding API Capabilities](02-Creating-APIs-with-FastAPI/Session%202%20Creating%20APIs%20with%20FastAPI.html#add-more-functions)
+  - CSV update endpoints via POST
+  - Weather forecast & historical endpoints
+  - arXiv query wrapping
+
+## [03–04 Chatbot with LLM API](03-04-Building-a-Chatbot-with-LLM-API/Session%203-4%20Building%20a%20Chatbot%20with%20an%20LLM%20API.html)
+- [1. LLM API Fundamentals](03-04-Building-a-Chatbot-with-LLM-API/Session%203-4%20Building%20a%20Chatbot%20with%20an%20LLM%20API.html#llm-api)
+  - Authentication, base URLs & model selectors
+- [2. Calling LLM APIs](03-04-Building-a-Chatbot-with-LLM-API/Session%203-4%20Building%20a%20Chatbot%20with%20an%20LLM%20API.html#call-an-llm-api)
+  - Gemini API integration with `google-genai`
+  - OpenRouter API integration
+  - Troubleshooting HTTP & API error codes
+- [3. Building a Multi-Turn Chatbot](03-04-Building-a-Chatbot-with-LLM-API/Session%203-4%20Building%20a%20Chatbot%20with%20an%20LLM%20API.html#build-a-chatbot)
+  - System prompts & behavioural guardrails
+  - Maintaining conversational state
+  - Real-time token streaming
+- [4. Function Calling Workflows](03-04-Building-a-Chatbot-with-LLM-API/Session%203-4%20Building%20a%20Chatbot%20with%20an%20LLM%20API.html#function-calling-answer-weather-questions)
+  - Defining Python executable functions
+  - Declaring tools with JSON Schema
+  - Dispatching tool execution & feedback loops
+  - Why standardise with MCP
+
+## [05 Introduction to MCP](05-Introduction-to-MCP/Session%205%20Introduction%20to%20MCP.html)
+- [1. From Function Calling to MCP](05-Introduction-to-MCP/Session%205%20Introduction%20to%20MCP.html#from-function-calling-to-mcp)
+  - Solving the $M \times N$ tool integration bottleneck
+- [2. MCP Core Architecture](05-Introduction-to-MCP/Session%205%20Introduction%20to%20MCP.html#mcp-architecture)
+  - Host vs Client vs Server roles
+  - Primitives: Tools, Resources, Prompts
+- [3. Transport Mechanisms](05-Introduction-to-MCP/Session%205%20Introduction%20to%20MCP.html#transport-in-mcp)
+  - Local subprocess stdio transport
+  - Networked Streamable HTTP & SSE transport
+- [4. Building a FastMCP Server](05-Introduction-to-MCP/Session%205%20Introduction%20to%20MCP.html#build-your-own-mcp-server)
+  - Creating `@mcp.tool()` handlers
+  - Exposing live status resources & prompts
+- [5. Chatbot MCP Client Integration](05-Introduction-to-MCP/Session%205%20Introduction%20to%20MCP.html#connect-mcp-to-the-chatbot)
+  - Dynamic tool discovery via MCP SDK
+  - Injecting schemas into LLM function loop
+  - Running client & server across terminals
+- [6. Multi-Tool MCP Systems](05-Introduction-to-MCP/Session%205%20Introduction%20to%20MCP.html#multi-tool-mcp-chatbot)
+  - Weather + arXiv unified MCP assistant
+</script>
+</div>
+
+<script>
+// Open mindmap content links in a new tab; resolve to online GitHub Pages if running from file://
+document.addEventListener('click', function(e) {
+  const link = e.target.closest('a');
+  if (!link || !link.getAttribute('href') || link.classList.contains('nav-btn')) return;
+
+  let href = link.getAttribute('href');
+  
+  if (window.location.protocol === 'file:' && !href.startsWith('http://') && !href.startsWith('https://')) {
+    href = 'https://wlos.github.io/Connect-AI-using-REST-API/' + href.replace(/^\.\//, '');
+    link.setAttribute('href', href);
+  }
+
+  link.setAttribute('target', '_blank');
+  link.setAttribute('rel', 'noopener noreferrer');
+});
+
+// Recursive fold state manager for Markmap
+function setNodeFold(node, fold, depth) {
+  if (depth === undefined) depth = 0;
+  if (depth >= 1) {
+    node.payload = Object.assign({}, node.payload, { fold: fold ? 1 : 0 });
+  } else {
+    node.payload = Object.assign({}, node.payload, { fold: 0 });
+  }
+  if (node.children && node.children.length > 0) {
+    node.children.forEach(function(child) {
+      setNodeFold(child, fold, depth + 1);
+    });
+  }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  const btnZoomIn = document.getElementById('btn-zoom-in');
+  const btnZoomOut = document.getElementById('btn-zoom-out');
+  const btnFit = document.getElementById('btn-fit');
+  const btnExpand = document.getElementById('btn-expand');
+  const btnCollapse = document.getElementById('btn-collapse');
+
+  if (btnZoomIn) {
+    btnZoomIn.addEventListener('click', function() {
+      if (markmapInstance) markmapInstance.rescale(1.25);
+    });
+  }
+
+  if (btnZoomOut) {
+    btnZoomOut.addEventListener('click', function() {
+      if (markmapInstance) markmapInstance.rescale(0.8);
+    });
+  }
+
+  if (btnFit) {
+    btnFit.addEventListener('click', function() {
+      if (markmapInstance) markmapInstance.fit();
+    });
+  }
+
+  if (btnExpand) {
+    btnExpand.addEventListener('click', async function() {
+      if (markmapInstance && markmapInstance.state && markmapInstance.state.data) {
+        setNodeFold(markmapInstance.state.data, false, 0);
+        await markmapInstance.renderData();
+        markmapInstance.fit();
+      }
+    });
+  }
+
+  if (btnCollapse) {
+    btnCollapse.addEventListener('click', async function() {
+      if (markmapInstance && markmapInstance.state && markmapInstance.state.data) {
+        setNodeFold(markmapInstance.state.data, true, 0);
+        await markmapInstance.renderData();
+        markmapInstance.fit();
+      }
+    });
+  }
+});
+</script>
+</body>
+</html>

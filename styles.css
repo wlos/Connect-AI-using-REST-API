@@ -145,3 +145,83 @@ main.content table td,
     border-radius: 1rem;
   }
 }
+
+/* Course Banner */
+.course-banner-container {
+  margin: 0.75rem 0 2rem;
+  text-align: center;
+}
+
+.course-banner-img {
+  width: 100%;
+  max-width: 1080px;
+  height: auto;
+  border-radius: 1rem;
+  border: 1px solid var(--course-border);
+  box-shadow: 0 0.5rem 2rem rgba(23, 32, 51, 0.08);
+}
+
+/* Vertical Info Stack (n*1 column layout) */
+.info-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin: 1.25rem 0 2.5rem;
+}
+
+.info-card {
+  padding: 1.25rem 1.5rem;
+  background: #ffffff;
+  border: 1px solid var(--course-border);
+  border-radius: 0.85rem;
+  box-shadow: 0 0.15rem 0.5rem rgba(23, 32, 51, 0.03);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.info-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0.4rem 1.25rem rgba(0, 102, 204, 0.08);
+  border-color: var(--course-blue);
+}
+
+.info-card h4 {
+  margin-top: 0;
+  margin-bottom: 0.45rem;
+  font-size: 1.12rem;
+  color: var(--course-ink);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.info-card h4 a {
+  color: var(--course-blue);
+  text-decoration: none;
+}
+
+.info-card h4 a:hover {
+  text-decoration: underline;
+}
+
+.info-card p {
+  margin-bottom: 0;
+  color: var(--course-muted);
+  font-size: 0.98rem;
+  line-height: 1.55;
+}
+
+.info-card p + p {
+  margin-top: 0.35rem;
+}
+
+.info-card .focus-badge {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--course-blue);
+  background: rgba(0, 102, 204, 0.08);
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  letter-spacing: 0.01em;
+}
+
