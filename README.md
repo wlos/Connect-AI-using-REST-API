@@ -17,7 +17,7 @@
 Welcome to the **Build AI Apps with REST API & MCP** curriculum (aligning with **ICTPRG553 Create and develop REST APIs**). This repository provides vocational learners and software engineers with hands-on, practical foundations in connecting artificial intelligence models with enterprise systems through robust RESTful web services, FastAPI microservices, and the Model Context Protocol (MCP).
 
 - 🌐 **Course Website**: <https://wlos.github.io/Connect-AI-using-REST-API/>
-- 🗺️ **Interactive Roadmap**: [Mindmap of the Course](mindmap.html) · [Online Mindmap](https://wlos.github.io/Connect-AI-using-REST-API/mindmap.html)
+- 🗺️ **Interactive Roadmap**: [Mindmap of the Course](https://wlos.github.io/Connect-AI-using-REST-API/mindmap.html)
 
 ## 🛠️ What You'll Build
 
@@ -94,7 +94,7 @@ To work with the notebooks and API servers on your local computer:
 ## 🎓 Other Curricula
 
 - 🤖 [Artificial Intelligence Skill Set](https://wlos.github.io/AI_SS/) · [GitHub](https://github.com/wlos/AI_SS): Classical ML, PyTorch CNNs, Computer Vision, and Hugging Face Transformers.
-- 🐍 [Introduction to AI with Python](https://wlos.github.io/ai_with_python_course/) · [GitHub](https://github.com/wlos/ai_with_python_course): Programming fundamentals, algorithms, robotics with micro:bit & Maqueen, and basic AI.
+- 🧠 [Introduction to AI with Python](https://wlos.github.io/ai_with_python_course/) · [GitHub](https://github.com/wlos/ai_with_python_course): Programming fundamentals, algorithms, robotics with micro:bit & Maqueen, and basic AI.
 - 📊 [Data Analysis with Python](https://wlos.github.io/DA_with_Python/) · [GitHub](https://github.com/wlos/DA_with_Python): End-to-end data analysis, Pandas, Matplotlib / Seaborn visualisations, and scikit-learn modelling.
 
 ## 📄 License
