@@ -4,15 +4,25 @@ import argparse
 import asyncio
 import json
 import sys
+from contextlib import asynccontextmanager
 
 import requests
 from fastmcp import Client
 from fastmcp.client.transports import StdioTransport
 
 SERVER_URL = "http://127.0.0.1:8000/mcp"
-CHAT_URL = "https://openrouter.ai/api/v1/chat/completions"
-CHAT_API_KEY = "YOUR_LLM_API_KEY"  # Enter your LLM provider's API key.
-CHAT_MODEL = "YOUR_MODEL_ID"  # Select a model that supports tool calls.
+LLM_PROVIDER = "gemini"  # Choose "gemini" or "openrouter".
+
+if LLM_PROVIDER == "gemini":
+    CHAT_URL = "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions"
+    CHAT_API_KEY = "YOUR_GEMINI_API_KEY"
+    CHAT_MODEL = "gemini-3.6-flash"
+elif LLM_PROVIDER == "openrouter":
+    CHAT_URL = "https://openrouter.ai/api/v1/chat/completions"
+    CHAT_API_KEY = "YOUR_OPENROUTER_API_KEY"
+    CHAT_MODEL = "openrouter/free"  # Selects a free model that supports the request.
+else:
+    raise ValueError('Choose "gemini" or "openrouter" for LLM_PROVIDER.')
 
 def tool_schema(tool):
     """Read the input schema exposed by the installed MCP SDK."""
@@ -59,7 +69,7 @@ class MCPChatbot:
         )
         self.client = Client(server)
         self.available_tools = []
-        self.messages = [{"role": "system", "content": system_prompt or (
+        self.conversation = [{"role": "system", "content": system_prompt or (
             "You are a weather assistant. Use Australian English. "
             "Do not invent weather data. Ask for a city when it is missing."
         )}]
@@ -78,8 +88,8 @@ class MCPChatbot:
         if not self.api_url.startswith(("https://", "http://")):
             raise ValueError("CHAT_URL must be an HTTP or HTTPS API endpoint.")
 
-    async def mcp_tools_to_llm(self):
-        """Convert discovered MCP tools to the LLM's function declaration format."""
+    async def list_tools_for_llm(self):
+        """List MCP tools and convert them to the LLM's function format."""
         tools = await self.client.list_tools()
         return [
             {"type": "function", "function": {
@@ -98,15 +108,21 @@ class MCPChatbot:
         result = await self.client.call_tool(tool_name, tool_args)
         return result_text(result)
 
-    async def connect_and_run(self):
-        """Discover tools once and keep the MCP connection open for the chat."""
-        self.validate_settings()
+    @asynccontextmanager
+    async def connect_to_server(self):
+        """Open the configured MCP client and discover its tools."""
         async with self.client:
-            self.available_tools = await self.mcp_tools_to_llm()
+            self.available_tools = await self.list_tools_for_llm()
             tool_names = {tool["function"]["name"] for tool in self.available_tools}
             if not tool_names:
                 raise ValueError("The server did not publish any tools.")
             print("Connected to server with tools:", sorted(tool_names))
+            yield  # Keep the client open until the caller leaves this context.
+
+    async def connect_and_run(self):
+        """Validate settings and run the chat while the MCP client is open."""
+        self.validate_settings()
+        async with self.connect_to_server():
             await self.chat_loop()
 
     def send_messages(self, messages):
@@ -157,7 +173,7 @@ class MCPChatbot:
 
     async def chat(self, user_message: str) -> str:
         """Complete a chat turn, running requested tools through MCP."""
-        pending = self.messages + [{"role": "user", "content": user_message}]
+        pending = self.conversation + [{"role": "user", "content": user_message}]
         while True:
             # Keep the MCP event loop responsive while requests reads the LLM stream.
             response = await asyncio.to_thread(self.send_messages, pending)
@@ -175,7 +191,7 @@ class MCPChatbot:
                     "content": result,  # Return the MCP text to the LLM.
                 })
 
-        self.messages = pending  # Save the complete turn after the requests succeed.
+        self.conversation = pending  # Save the complete turn after the requests succeed.
         return response["content"]
 
     async def chat_loop(self):
