@@ -59,15 +59,17 @@ class MCPChatbot:
     def __init__(self, transport="http", *, server_url=SERVER_URL,
                  server_script="weather_mcp_server.py", api_url=CHAT_URL,
                  api_key=CHAT_API_KEY, model=CHAT_MODEL,
-                 system_prompt=None):
+                 system_prompt=None, client=None):
         self.transport = transport
         self.api_url, self.api_key, self.model = api_url, api_key, model
-        server = server_url if transport == "http" else StdioTransport(
-            command=sys.executable,  # Use this Python environment for the subprocess.
-            args=[server_script, "--transport", "stdio"],
-            keep_alive=False,  # Close the subprocess when the client disconnects.
-        )
-        self.client = Client(server)
+        if client is None:
+            server = server_url if transport == "http" else StdioTransport(
+                command=sys.executable,  # Use this Python environment for the subprocess.
+                args=[server_script, "--transport", "stdio"],
+                keep_alive=False,  # Close the subprocess when the client disconnects.
+            )
+            client = Client(server)
+        self.client = client
         self.available_tools = []
         self.conversation = [{"role": "system", "content": system_prompt or (
             "You are a weather assistant. Use Australian English. "
@@ -88,9 +90,10 @@ class MCPChatbot:
         if not self.api_url.startswith(("https://", "http://")):
             raise ValueError("CHAT_URL must be an HTTP or HTTPS API endpoint.")
 
-    async def list_tools_for_llm(self):
+    async def list_tools_for_llm(self, client=None):
         """List MCP tools and convert them to the LLM's function format."""
-        tools = await self.client.list_tools()
+        client = self.client if client is None else client
+        tools = await client.list_tools()
         return [
             {"type": "function", "function": {
                 "name": tool.name,
@@ -109,15 +112,19 @@ class MCPChatbot:
         return result_text(result)
 
     @asynccontextmanager
-    async def connect_to_server(self):
-        """Open the configured MCP client and discover its tools."""
-        async with self.client:
-            self.available_tools = await self.list_tools_for_llm()
-            tool_names = {tool["function"]["name"] for tool in self.available_tools}
+    async def connect_to_server(self, client=None):
+        """Open one MCP client and discover its tools."""
+        connection = self.client if client is None else client
+        async with connection:
+            if client is None:
+                tools = self.available_tools = await self.list_tools_for_llm()
+            else:
+                tools = await self.list_tools_for_llm(client)
+            tool_names = {tool["function"]["name"] for tool in tools}
             if not tool_names:
                 raise ValueError("The server did not publish any tools.")
             print("Connected to server with tools:", sorted(tool_names))
-            yield  # Keep the client open until the caller leaves this context.
+            yield tools  # Keep the client open until the caller leaves this context.
 
     async def connect_and_run(self):
         """Validate settings and run the chat while the MCP client is open."""

@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "weather": {
+      "args": ["sample_weather_mcp_server.py", "--transport", "stdio"],
+      "url_env": "MCP_SERVER_URL",
+      "allowed_tools": ["get_weather"]
+    },
+    "files": {
+      "args": ["filesystem_mcp_server.py"],
+      "allowed_tools": ["read_event_plan"]
+    }
+  }
+}

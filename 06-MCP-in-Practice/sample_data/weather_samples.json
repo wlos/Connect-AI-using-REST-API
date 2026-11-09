@@ -1,0 +1,4 @@
+{
+  "perth": {"city": "Perth", "temperature_c": 24, "conditions": "Partly cloudy"},
+  "sydney": {"city": "Sydney", "temperature_c": 19, "conditions": "Light rain"}
+}

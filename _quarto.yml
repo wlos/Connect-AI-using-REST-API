@@ -24,12 +24,23 @@ project:
     - 05-Introduction-to-MCP/practice/mcp_client_stdio.py
     - 05-Introduction-to-MCP/practice/multi_tool_mcp_server.py
     - 05-Introduction-to-MCP/practice/mcp_multi_tool_chatbot.py
+    - 06-MCP-in-Practice/practice/sample_weather_mcp_server.py
+    - 06-MCP-in-Practice/practice/weather_resource_client.py
+    - 06-MCP-in-Practice/practice/multi_server_chatbot.py
+    - 06-MCP-in-Practice/practice/mcp_servers.json
+    - 06-MCP-in-Practice/practice/requirements.txt
+    - 06-MCP-in-Practice/practice/filesystem_mcp_server.py
+    - 06-MCP-in-Practice/practice/web_chat.py
+    - 06-MCP-in-Practice/practice/index.html
+    - 06-MCP-in-Practice/sample_data/event-plan.md
+    - 06-MCP-in-Practice/sample_data/weather_samples.json
   render:
     - index.qmd
     - "01-Introduction-to-REST-API/Session 1 Introduction to Connect AI with Business Systems using REST.ipynb"
     - "02-Creating-APIs-with-FastAPI/Session 2 Creating APIs with FastAPI.ipynb"
     - "03-04-Building-a-Chatbot-with-LLM-API/Session 3-4 Building a Chatbot with an LLM API.ipynb"
     - "05-Introduction-to-MCP/Session 5 Introduction to MCP.ipynb"
+    - "06-MCP-in-Practice/Session 6 MCP in Practice.ipynb"
 
 website:
   title: "Build AI Apps with REST API & MCP"
@@ -52,6 +63,8 @@ website:
         href: "03-04-Building-a-Chatbot-with-LLM-API/Session 3-4 Building a Chatbot with an LLM API.ipynb"
       - text: "Session 5"
         href: "05-Introduction-to-MCP/Session 5 Introduction to MCP.ipynb"
+      - text: "Session 6"
+        href: "06-MCP-in-Practice/Session 6 MCP in Practice.ipynb"
   sidebar:
     style: floating
     search: true
@@ -70,6 +83,8 @@ website:
             href: "03-04-Building-a-Chatbot-with-LLM-API/Session 3-4 Building a Chatbot with an LLM API.ipynb"
           - text: "Session 5: Introduction to MCP"
             href: "05-Introduction-to-MCP/Session 5 Introduction to MCP.ipynb"
+          - text: "Session 6: MCP in Practice"
+            href: "06-MCP-in-Practice/Session 6 MCP in Practice.ipynb"
   page-footer:
     left: "Build AI Apps with REST API & MCP (ICTPRG553) course materials"
     right:

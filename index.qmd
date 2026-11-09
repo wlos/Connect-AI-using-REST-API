@@ -48,6 +48,13 @@ Gemini & OpenRouter API Integration · Multi-turn Conversation State · Streamin
 
 MCP Architecture (Host, Client, Server) · FastMCP Server Development · stdio & Streamable HTTP Transports · Dynamic Tool Discovery & Resource Serving · Multi-tool Chatbot Integration
 :::
+
+::: {.info-card}
+#### 🧩 [Session 06: MCP in Practice](<06-MCP-in-Practice/Session 6 MCP in Practice.ipynb>)
+[Multi-server MCP Chatbots]{.focus-badge}
+
+- MCP Resources and Prompt Design · Connect Multiple MCP Servers · Deploy a Remote MCP Server · Deploy the Web Chat
+:::
 :::
 
 ## 🎯 Core Competencies {#core-competencies}

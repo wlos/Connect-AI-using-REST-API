@@ -56,6 +56,7 @@ The course is organised into modular sessions located directly under the reposit
 | ⚡ [02](02-Creating-APIs-with-FastAPI) | [Creating APIs with FastAPI](02-Creating-APIs-with-FastAPI) | Backend Engineering & Validation | FastAPI Routes · OpenAPI / Swagger Docs · Pydantic Schemas · Query & Path Parameters · Weather Microservice & arXiv Endpoints |
 | 🤖 [03–04](03-04-Building-a-Chatbot-with-LLM-API) | [Building a Chatbot with an LLM API](03-04-Building-a-Chatbot-with-LLM-API) | LLM APIs & Function Calling | Gemini & OpenRouter APIs · Multi-turn Dialogue State · Streaming · JSON Schema Tools · Autonomous Function Calling Loops |
 | 🔌 [05](05-Introduction-to-MCP) | [Introduction to MCP](05-Introduction-to-MCP) | Model Context Protocol & Agents | MCP Architecture (Host, Client, Server) · FastMCP Server · stdio & HTTP Transports · Dynamic Tool Discovery · Multi-tool Chatbot |
+| 🧩 [06](06-MCP-in-Practice) | [MCP in Practice](06-MCP-in-Practice/Session%206%20MCP%20in%20Practice.ipynb) | Multi-server MCP Chatbots | MCP Resources and Prompt Design · Connect Multiple MCP Servers · Deploy a Remote MCP Server · Deploy the Web Chat |
 
 ## 🚀 Getting Started
 
