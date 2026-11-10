@@ -5,7 +5,11 @@ _site/
 .jupyter_cache/
 __pycache__/
 .venv/
+.env
+.env.*
 weather_chat_history.sqlite3*
+/05-Building-MCP-Server-and-Client/practice/session-5-weather-mcp.zip
+/06-Deploying-MCP-Servers/practice/session-6-multi-mcp.zip
 
 # Visible local directory for temporary files created during development
 archive/

@@ -5,12 +5,15 @@ import json
 import os
 
 from datetime import date
+from pathlib import Path
 
 import requests
+from dotenv import load_dotenv
 from fastmcp import FastMCP
 from starlette.responses import PlainTextResponse
 
-WEATHER_API_KEY = "YOUR_WEATHERAPI_KEY"  # Replace with your WeatherAPI key.
+load_dotenv(Path(__file__).with_name(".env"))
+WEATHER_API_KEY = os.environ.get("WEATHER_API_KEY") or "YOUR_WEATHERAPI_KEY"
 CURRENT_WEATHER_URL = "https://api.weatherapi.com/v1/current.json"
 mcp = FastMCP(name="Weather Server")
 

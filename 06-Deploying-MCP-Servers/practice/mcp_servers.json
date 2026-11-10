@@ -1,13 +1,15 @@
 {
   "mcpServers": {
     "weather": {
-      "args": ["sample_weather_mcp_server.py", "--transport", "stdio"],
-      "url_env": "MCP_SERVER_URL",
-      "allowed_tools": ["get_weather"]
+      "command": "python",
+      "args": ["sample_weather_mcp_server.py", "--transport", "stdio"]
     },
     "files": {
-      "args": ["filesystem_mcp_server.py"],
-      "allowed_tools": ["read_event_plan"]
+      "command": "python",
+      "args": ["filesystem_mcp_server.py"]
+    },
+    "learn": {
+      "url": "https://learn.microsoft.com/api/mcp"
     }
   }
 }

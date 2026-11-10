@@ -3,24 +3,28 @@
 import argparse
 import asyncio
 import json
+import os
 import sys
 from contextlib import asynccontextmanager
+from pathlib import Path
 
 import requests
+from dotenv import load_dotenv
 from fastmcp import Client
 from fastmcp.client.transports import StdioTransport
 
 SERVER_URL = "http://127.0.0.1:8000/mcp"
-LLM_PROVIDER = "gemini"  # Choose "gemini" or "openrouter".
+load_dotenv(Path(__file__).with_name(".env"))
+LLM_PROVIDER = os.environ.get("LLM_PROVIDER", "").strip().lower() or "gemini"
 
 if LLM_PROVIDER == "gemini":
     CHAT_URL = "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions"
-    CHAT_API_KEY = "YOUR_GEMINI_API_KEY"
-    CHAT_MODEL = "gemini-3.6-flash"
+    CHAT_API_KEY = os.environ.get("CHAT_API_KEY") or "YOUR_GEMINI_API_KEY"
+    CHAT_MODEL = os.environ.get("CHAT_MODEL") or "gemini-3.6-flash"
 elif LLM_PROVIDER == "openrouter":
     CHAT_URL = "https://openrouter.ai/api/v1/chat/completions"
-    CHAT_API_KEY = "YOUR_OPENROUTER_API_KEY"
-    CHAT_MODEL = "openrouter/free"  # Selects a free model that supports the request.
+    CHAT_API_KEY = os.environ.get("CHAT_API_KEY") or "YOUR_OPENROUTER_API_KEY"
+    CHAT_MODEL = os.environ.get("CHAT_MODEL") or "openrouter/free"
 else:
     raise ValueError('Choose "gemini" or "openrouter" for LLM_PROVIDER.')
 

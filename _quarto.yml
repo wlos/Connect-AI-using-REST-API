@@ -33,7 +33,9 @@ project:
     - 05-Building-MCP-Server-and-Client/sample_data/comfort.md
     - 06-Deploying-MCP-Servers/practice/sample_weather_mcp_server.py
     - 06-Deploying-MCP-Servers/practice/multi_server_chatbot.py
+    - 06-Deploying-MCP-Servers/practice/mcp_chatbot.py
     - 06-Deploying-MCP-Servers/practice/mcp_servers.json
+    - 06-Deploying-MCP-Servers/practice/session-6-multi-mcp.zip
     - 06-Deploying-MCP-Servers/practice/requirements.txt
     - 06-Deploying-MCP-Servers/practice/filesystem_mcp_server.py
     - 06-Deploying-MCP-Servers/practice/web_chat.py

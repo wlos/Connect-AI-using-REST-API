@@ -39,6 +39,34 @@ jobs:
             sample_data/reference_cities.json \
             sample_data/activity.md \
             sample_data/comfort.md
+          zip -jX practice/session-5-weather-mcp.zip ../LICENSE
+
+      - name: Package Session 6 multi-server chatbot
+        run: |
+          zip -X 06-Deploying-MCP-Servers/practice/session-6-multi-mcp.zip \
+            .gitignore \
+            LICENSE \
+            06-Deploying-MCP-Servers/practice/mcp_chatbot.py \
+            06-Deploying-MCP-Servers/practice/multi_server_chatbot.py \
+            06-Deploying-MCP-Servers/practice/mcp_servers.json \
+            06-Deploying-MCP-Servers/practice/sample_weather_mcp_server.py \
+            06-Deploying-MCP-Servers/practice/filesystem_mcp_server.py \
+            06-Deploying-MCP-Servers/practice/requirements.txt \
+            06-Deploying-MCP-Servers/practice/web_chat.py \
+            06-Deploying-MCP-Servers/practice/index.html \
+            06-Deploying-MCP-Servers/sample_data/event-plan.md \
+            06-Deploying-MCP-Servers/sample_data/weather_samples.json
+
+      - name: Add blank learner settings to practice ZIPs
+        run: |
+          scratch="$(mktemp -d)"
+          trap 'rm -rf -- "$scratch"' EXIT
+          mkdir -p "$scratch/practice" "$scratch/06-Deploying-MCP-Servers/practice"
+          printf '%s\n' 'LLM_PROVIDER=' 'CHAT_MODEL=' 'CHAT_API_KEY=' 'WEATHER_API_KEY=' > "$scratch/practice/.env"
+          printf '%s\n' 'LLM_PROVIDER=' 'CHAT_MODEL=' 'OPENROUTER_API_KEY=' 'GEMINI_API_KEY=' 'WEATHER_API_KEY=' > "$scratch/06-Deploying-MCP-Servers/practice/.env"
+          cd "$scratch"
+          zip -X "$GITHUB_WORKSPACE/05-Building-MCP-Server-and-Client/practice/session-5-weather-mcp.zip" practice/.env
+          zip -X "$GITHUB_WORKSPACE/06-Deploying-MCP-Servers/practice/session-6-multi-mcp.zip" 06-Deploying-MCP-Servers/practice/.env
 
       - name: Render website
         run: quarto render
