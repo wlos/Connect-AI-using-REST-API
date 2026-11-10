@@ -25,6 +25,21 @@ jobs:
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
+      - name: Package Session 5 weather chatbot
+        working-directory: 05-Building-MCP-Server-and-Client
+        run: |
+          zip -X practice/session-5-weather-mcp.zip \
+            practice/mcp_chatbot.py \
+            practice/weather_chatbot_with_resources.py \
+            practice/weather_mcp_server_with_resources.py \
+            practice/web_chat.py \
+            practice/chat_store.py \
+            practice/index.html \
+            practice/requirements.txt \
+            sample_data/reference_cities.json \
+            sample_data/activity.md \
+            sample_data/comfort.md
+
       - name: Render website
         run: quarto render
 

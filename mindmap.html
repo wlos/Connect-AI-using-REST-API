@@ -230,54 +230,56 @@ Object.defineProperty(window.markmap, 'Markmap', {
   - Weather forecast & historical endpoints
   - arXiv query wrapping
 
-## [03–04 Chatbot with LLM API](03-04-Building-a-Chatbot-with-LLM-API/Session%203-4%20Building%20a%20Chatbot%20with%20an%20LLM%20API.html)
-- [1. LLM API Fundamentals](03-04-Building-a-Chatbot-with-LLM-API/Session%203-4%20Building%20a%20Chatbot%20with%20an%20LLM%20API.html#llm-api)
+## [03–04 Building Chatbot with LLM API](03-04-Building-Chatbot-with-LLM-API/Session%203-4%20Building%20Chatbot%20with%20LLM%20API.html)
+- [1. LLM API Fundamentals](03-04-Building-Chatbot-with-LLM-API/Session%203-4%20Building%20Chatbot%20with%20LLM%20API.html#llm-api)
   - Authentication, base URLs & model selectors
-- [2. Calling LLM APIs](03-04-Building-a-Chatbot-with-LLM-API/Session%203-4%20Building%20a%20Chatbot%20with%20an%20LLM%20API.html#call-an-llm-api)
+- [2. Calling LLM APIs](03-04-Building-Chatbot-with-LLM-API/Session%203-4%20Building%20Chatbot%20with%20LLM%20API.html#call-an-llm-api)
   - Gemini API integration with `google-genai`
   - OpenRouter API integration
   - Troubleshooting HTTP & API error codes
-- [3. Building a Multi-Turn Chatbot](03-04-Building-a-Chatbot-with-LLM-API/Session%203-4%20Building%20a%20Chatbot%20with%20an%20LLM%20API.html#build-a-chatbot)
+- [3. Building a Multi-Turn Chatbot](03-04-Building-Chatbot-with-LLM-API/Session%203-4%20Building%20Chatbot%20with%20LLM%20API.html#build-a-chatbot)
   - System prompts & behavioural guardrails
   - Maintaining conversational state
   - Real-time token streaming
-- [4. Function Calling Workflows](03-04-Building-a-Chatbot-with-LLM-API/Session%203-4%20Building%20a%20Chatbot%20with%20an%20LLM%20API.html#function-calling-answer-weather-questions)
+- [4. Function Calling Workflows](03-04-Building-Chatbot-with-LLM-API/Session%203-4%20Building%20Chatbot%20with%20LLM%20API.html#function-calling-answer-weather-questions)
   - Defining Python executable functions
   - Declaring tools with JSON Schema
   - Dispatching tool execution & feedback loops
   - Why standardise with MCP
 
-## [05 Introduction to MCP](05-Introduction-to-MCP/Session%205%20Introduction%20to%20MCP.html)
-- [1. From Function Calling to MCP](05-Introduction-to-MCP/Session%205%20Introduction%20to%20MCP.html#from-function-calling-to-mcp)
+## [05 Building MCP Server & Client](05-Building-MCP-Server-and-Client/Session%205%20Building%20MCP%20Server%20%26%20Client.html)
+- [1. From Function Calling to MCP](05-Building-MCP-Server-and-Client/Session%205%20Building%20MCP%20Server%20%26%20Client.html#from-function-calling-to-mcp)
   - Solving the $M \times N$ tool integration bottleneck
-- [2. MCP Core Architecture](05-Introduction-to-MCP/Session%205%20Introduction%20to%20MCP.html#mcp-architecture)
+- [2. MCP Core Architecture](05-Building-MCP-Server-and-Client/Session%205%20Building%20MCP%20Server%20%26%20Client.html#mcp-architecture)
   - Host vs Client vs Server roles
   - Primitives: Tools, Resources, Prompts
-- [3. Transport Mechanisms](05-Introduction-to-MCP/Session%205%20Introduction%20to%20MCP.html#transport-in-mcp)
+- [3. Transport Mechanisms](05-Building-MCP-Server-and-Client/Session%205%20Building%20MCP%20Server%20%26%20Client.html#transport-in-mcp)
   - Local subprocess stdio transport
   - Networked Streamable HTTP & SSE transport
-- [4. Building a FastMCP Server](05-Introduction-to-MCP/Session%205%20Introduction%20to%20MCP.html#build-your-own-mcp-server)
+- [4. Building a FastMCP Server](05-Building-MCP-Server-and-Client/Session%205%20Building%20MCP%20Server%20%26%20Client.html#build-your-own-mcp-server)
   - Creating `@mcp.tool()` handlers
   - Exposing live status resources & prompts
-- [5. Chatbot MCP Client Integration](05-Introduction-to-MCP/Session%205%20Introduction%20to%20MCP.html#connect-mcp-to-the-chatbot)
+- [5. Chatbot MCP Client Integration](05-Building-MCP-Server-and-Client/Session%205%20Building%20MCP%20Server%20%26%20Client.html#connect-mcp-to-the-chatbot)
   - Dynamic tool discovery via MCP SDK
   - Injecting schemas into LLM function loop
   - Running client & server across terminals
-- [6. Multi-Tool MCP Systems](05-Introduction-to-MCP/Session%205%20Introduction%20to%20MCP.html#multi-tool-mcp-chatbot)
+- [6. Multi-Tool MCP Systems](05-Building-MCP-Server-and-Client/Session%205%20Building%20MCP%20Server%20%26%20Client.html#multi-tool-mcp-chatbot)
   - Weather + arXiv unified MCP assistant
+- [7. Adding Prompt and Resource Features](05-Building-MCP-Server-and-Client/Session%205%20Building%20MCP%20Server%20%26%20Client.html#adding-prompt-and-resource-features)
+  - [Weather resources](05-Building-MCP-Server-and-Client/Session%205%20Building%20MCP%20Server%20%26%20Client.html#weather-resources) · Fixed URIs, city templates and MIME types
+  - [Weather prompts](05-Building-MCP-Server-and-Client/Session%205%20Building%20MCP%20Server%20%26%20Client.html#weather-prompts) · Prompt discovery and rendered messages
+  - [Client commands](05-Building-MCP-Server-and-Client/Session%205%20Building%20MCP%20Server%20%26%20Client.html#client-commands) · Resource shortcuts and prompt arguments
+  - [Run the terminal chatbot](05-Building-MCP-Server-and-Client/Session%205%20Building%20MCP%20Server%20%26%20Client.html#run-the-terminal-chatbot)
+  - [Run the Web UI](05-Building-MCP-Server-and-Client/Session%205%20Building%20MCP%20Server%20%26%20Client.html#run-the-web-ui)
 
-## [06 MCP in Practice](06-MCP-in-Practice/Session%206%20MCP%20in%20Practice.html)
-- [MCP Resources and Prompt Design](06-MCP-in-Practice/Session%206%20MCP%20in%20Practice.html#mcp-resources-and-prompt-design)
-  - [Weather resources](06-MCP-in-Practice/Session%206%20MCP%20in%20Practice.html#design-and-read-weather-resources) · Fixed URIs, city templates and MIME types
-  - [Weather prompts](06-MCP-in-Practice/Session%206%20MCP%20in%20Practice.html#design-and-use-a-weather-prompt) · Prompt discovery and rendered messages
-  - [Terminal commands](06-MCP-in-Practice/Session%206%20MCP%20in%20Practice.html#try-the-terminal-commands) · Resource shortcuts and prompt arguments
-- [Connect Multiple MCP Servers](06-MCP-in-Practice/Session%206%20MCP%20in%20Practice.html#connect-multiple-mcp-servers)
-  - [Weather and Filesystem clients](06-MCP-in-Practice/Session%206%20MCP%20in%20Practice.html#connect-and-inspect-each-server)
-  - [Multi-server chatbot and tool routing](06-MCP-in-Practice/Session%206%20MCP%20in%20Practice.html#extend-the-session-5-chatbot)
-  - [Perth event briefing](06-MCP-in-Practice/Session%206%20MCP%20in%20Practice.html#try-the-combined-workflow)
-- [Deploy a Remote MCP Server](06-MCP-in-Practice/Session%206%20MCP%20in%20Practice.html#deploy-a-remote-mcp-server)
+## [06 Deploying MCP Servers](06-Deploying-MCP-Servers/Session%206%20Deploying%20MCP%20Servers.html)
+- [Connect Multiple MCP Servers](06-Deploying-MCP-Servers/Session%206%20Deploying%20MCP%20Servers.html#connect-multiple-mcp-servers)
+  - [Weather and Filesystem clients](06-Deploying-MCP-Servers/Session%206%20Deploying%20MCP%20Servers.html#connect-and-inspect-each-server)
+  - [Multi-server chatbot and tool routing](06-Deploying-MCP-Servers/Session%206%20Deploying%20MCP%20Servers.html#extend-the-session-5-chatbot)
+  - [Perth event briefing](06-Deploying-MCP-Servers/Session%206%20Deploying%20MCP%20Servers.html#try-the-combined-workflow)
+- [Deploy a Remote MCP Server](06-Deploying-MCP-Servers/Session%206%20Deploying%20MCP%20Servers.html#deploy-a-remote-mcp-server)
   - Local Streamable HTTP test · Render Web Service over HTTPS
-- [Deploy the Web Chat](06-MCP-in-Practice/Session%206%20MCP%20in%20Practice.html#deploy-the-web-chat)
+- [Deploy the Web Chat](06-Deploying-MCP-Servers/Session%206%20Deploying%20MCP%20Servers.html#deploy-the-web-chat)
   - Local browser test · Separate Render Web Service · Browser sessions
 </script>
 </div>

@@ -11,7 +11,7 @@ from fastmcp.client.transports import StdioTransport
 
 PRACTICE_DIR = os.path.dirname(os.path.abspath(__file__))
 REPO_DIR = os.path.dirname(os.path.dirname(PRACTICE_DIR))
-SESSION_5_PRACTICE = os.path.join(REPO_DIR, "05-Introduction-to-MCP", "practice")
+SESSION_5_PRACTICE = os.path.join(REPO_DIR, "05-Building-MCP-Server-and-Client", "practice")
 sys.path.insert(0, SESSION_5_PRACTICE)
 from mcp_chatbot import MCPChatbot, result_text
 

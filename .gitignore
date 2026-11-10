@@ -5,6 +5,7 @@ _site/
 .jupyter_cache/
 __pycache__/
 .venv/
+weather_chat_history.sqlite3*
 
 # Visible local directory for temporary files created during development
 archive/

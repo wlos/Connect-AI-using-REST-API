@@ -1,0 +1,26 @@
+{
+  "perth": {
+    "name": "Perth",
+    "state": "WA",
+    "climate": "Mediterranean (hot summer)",
+    "coordinates": "31.95°S, 115.86°E"
+  },
+  "sydney": {
+    "name": "Sydney",
+    "state": "NSW",
+    "climate": "Humid subtropical",
+    "coordinates": "33.87°S, 151.21°E"
+  },
+  "melbourne": {
+    "name": "Melbourne",
+    "state": "VIC",
+    "climate": "Oceanic / temperate",
+    "coordinates": "37.81°S, 144.96°E"
+  },
+  "brisbane": {
+    "name": "Brisbane",
+    "state": "QLD",
+    "climate": "Humid subtropical",
+    "coordinates": "27.47°S, 153.03°E"
+  }
+}

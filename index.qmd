@@ -36,24 +36,24 @@ FastAPI Route Handlers · Interactive Swagger / OpenAPI Docs · Pydantic Request
 :::
 
 ::: {.info-card}
-#### 🤖 [Sessions 03–04: Building a Chatbot with an LLM API](<03-04-Building-a-Chatbot-with-LLM-API/Session 3-4 Building a Chatbot with an LLM API.ipynb>)
+#### 🤖 [Sessions 03–04: Building Chatbot with LLM API](<03-04-Building-Chatbot-with-LLM-API/Session 3-4 Building Chatbot with LLM API.ipynb>)
 [LLM APIs & Function Calling]{.focus-badge}
 
 Gemini & OpenRouter API Integration · Multi-turn Conversation State · Streaming Responses · Tool Declarations with JSON Schema · Autonomous Function Calling Loops
 :::
 
 ::: {.info-card}
-#### 🔌 [Session 05: Introduction to MCP](<05-Introduction-to-MCP/Session 5 Introduction to MCP.ipynb>)
+#### 🔌 [Session 05: Building MCP Server & Client](<05-Building-MCP-Server-and-Client/Session 5 Building MCP Server & Client.ipynb>)
 [Model Context Protocol & Extensible Agents]{.focus-badge}
 
-MCP Architecture (Host, Client, Server) · FastMCP Server Development · stdio & Streamable HTTP Transports · Dynamic Tool Discovery & Resource Serving · Multi-tool Chatbot Integration
+MCP Architecture (Host, Client, Server) · FastMCP Server Development · stdio & Streamable HTTP Transports · Dynamic Tool Discovery & Resource Serving · Multi-tool Chatbot Integration · Adding Prompt and Resource Features
 :::
 
 ::: {.info-card}
-#### 🧩 [Session 06: MCP in Practice](<06-MCP-in-Practice/Session 6 MCP in Practice.ipynb>)
+#### 🧩 [Session 06: Deploying MCP Servers](<06-Deploying-MCP-Servers/Session 6 Deploying MCP Servers.ipynb>)
 [Multi-server MCP Chatbots]{.focus-badge}
 
-- MCP Resources and Prompt Design · Connect Multiple MCP Servers · Deploy a Remote MCP Server · Deploy the Web Chat
+- Connect Multiple MCP Servers · Deploy a Remote MCP Server · Deploy the Web Chat
 :::
 :::
 

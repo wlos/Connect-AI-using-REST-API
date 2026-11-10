@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Weather Desk · Session 5</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font: 1rem/1.55 system-ui, sans-serif;
+      color: #182f33;
+      background: #fafcfb;
+      --muted: #526b6d;
+      --accent: #155e56;
+      --line: #dbe7e4;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    button, input { font: inherit; }
+    button { cursor: pointer; }
+    button:disabled { opacity: .65; cursor: wait; }
+    :focus-visible { outline: 2px solid #408d82; outline-offset: 3px; }
+    [hidden] { display: none !important; }
+    .desk { display: grid; grid-template-columns: 15.5rem minmax(0, 1fr); height: 100dvh; }
+    aside { display: flex; flex-direction: column; min-height: 0; padding: 1.15rem; background: #142e31; color: #eef8f5; }
+    .brand { display: flex; align-items: center; gap: .65rem; font-weight: 750; letter-spacing: -.015em; }
+    .brand-mark { display: grid; place-items: center; width: 2rem; height: 2rem; border-radius: .65rem; background: #c9eadf; color: #17483f; font-size: .8rem; }
+    #new-chat { margin: 1.2rem 0 1.35rem; padding: .6rem .8rem; border: 1px solid #597977; border-radius: .7rem; background: transparent; color: inherit; text-align: left; }
+    #new-chat:hover, .history-item:hover, .history-item[aria-current="true"] { background: #254447; }
+    aside h2 { margin: 0 0 .35rem .45rem; color: #b5cfca; font-size: .75rem; font-weight: 700; }
+    #history { overflow: auto; }
+    #history-empty { margin: .35rem .45rem; color: #b5cfca; font-size: .8rem; }
+    .history-item { display: block; width: 100%; padding: .5rem .6rem; border: 0; border-radius: .55rem; color: inherit; background: none; text-align: left; font-size: .88rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    main { display: grid; grid-template-rows: auto minmax(0, 1fr) auto; min-height: 0; }
+    header { padding: .85rem clamp(1rem, 4vw, 2.6rem); border-bottom: 1px solid var(--line); background: #fff; }
+    .eyebrow { display: block; color: var(--accent); font-size: .7rem; font-weight: 750; letter-spacing: .12em; text-transform: uppercase; }
+    h1 { margin: .1rem 0 0; font-size: clamp(1rem, 2vw, 1.3rem); line-height: 1.3; overflow-wrap: anywhere; }
+    #conversation { overflow: auto; }
+    .thread, .composer-inner { width: min(100% - 2rem, 47rem); margin: 0 auto; }
+    .thread { padding: 1.65rem 0; }
+    .welcome { margin: clamp(1rem, 9vh, 5rem) auto 0; text-align: center; }
+    .welcome h2 { margin: 0; font-size: clamp(1.55rem, 5vw, 2.5rem); letter-spacing: -.04em; }
+    .welcome p { margin: .6rem auto 1.1rem; max-width: 34ch; color: var(--muted); }
+    .examples { display: flex; justify-content: center; flex-wrap: wrap; gap: .45rem; }
+    .example { padding: .35rem .75rem; border: 1px solid var(--line); border-radius: 2rem; background: white; color: var(--accent); font-size: .82rem; }
+    .example:hover { background: #edf7f3; }
+    .message { margin-bottom: 1rem; }
+    .message.user { max-width: 85%; margin-left: auto; }
+    .speaker { display: block; margin: 0 0 .3rem .15rem; color: var(--muted); font-size: .76rem; font-weight: 700; }
+    .user .speaker { text-align: right; margin-right: .15rem; }
+    .bubble { margin: 0; padding: .7rem .95rem; background: white; border: 1px solid var(--line); border-radius: 1rem; white-space: pre-wrap; overflow-wrap: anywhere; }
+    .user .bubble { background: #e2f2ec; border-color: #e2f2ec; }
+    .composer { padding: .9rem 0 .35rem; border-top: 1px solid var(--line); background: #fff; }
+    form { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: .5rem; }
+    label { grid-column: 1 / -1; font-size: .8rem; font-weight: 700; }
+    input { min-width: 0; padding: .7rem .85rem; border: 1px solid var(--line); border-radius: .75rem; color: inherit; }
+    #send { padding: .65rem 1.1rem; border: 0; border-radius: .75rem; background: var(--accent); color: white; font-weight: 700; }
+    #status { min-height: 1.5em; margin: .35rem 0 0; color: var(--muted); font-size: .8rem; }
+    @media (max-width: 640px) {
+      .desk { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr); }
+      aside { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: .35rem .65rem; padding: .65rem 1rem; }
+      #new-chat { margin: 0; padding: .35rem .65rem; font-size: .8rem; }
+      aside h2, #history { grid-column: 1 / -1; }
+      #history { max-height: 5rem; }
+      .history-item { padding: .25rem .45rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="desk">
+    <aside aria-label="Conversations">
+      <div class="brand"><span class="brand-mark" aria-hidden="true">WD</span> Weather Desk</div>
+      <button id="new-chat" type="button" disabled>＋ New chat</button>
+      <h2 id="history-heading">History</h2>
+      <nav id="history" aria-labelledby="history-heading"></nav>
+    </aside>
+    <main>
+      <header>
+        <span class="eyebrow">Session 5 · MCP</span>
+        <h1 id="title">New chat</h1>
+      </header>
+      <section id="conversation" aria-labelledby="title" tabindex="0">
+        <div class="thread">
+          <div class="welcome" id="welcome">
+            <h2>What’s the weather like?</h2>
+            <p>Ask about the weather, read a city guide or try a reusable prompt.</p>
+            <div class="examples" aria-label="Example commands">
+              <button class="example" type="button">@perth</button>
+              <button class="example" type="button">@guidelines comfort</button>
+              <button class="example" type="button">/prompts</button>
+            </div>
+          </div>
+          <div id="messages" role="log" aria-label="Chat messages"></div>
+        </div>
+      </section>
+      <div class="composer">
+        <div class="composer-inner">
+          <form id="chat-form">
+            <label for="message">Your message</label>
+            <input id="message" name="message" required maxlength="2000" placeholder="What is the weather in Perth?">
+            <button id="send" type="submit" disabled>Send</button>
+          </form>
+          <p id="status" role="status"></p>
+        </div>
+      </div>
+    </main>
+  </div>
+  <script>
+    const form = document.querySelector("#chat-form");
+    const input = document.querySelector("#message");
+    const send = document.querySelector("#send");
+    const newChat = document.querySelector("#new-chat");
+    const status = document.querySelector("#status");
+    const title = document.querySelector("#title");
+    const historyList = document.querySelector("#history");
+    const conversation = document.querySelector("#conversation");
+    const messages = document.querySelector("#messages");
+    const welcome = document.querySelector("#welcome");
+    let chats = [];
+    let activeChat = null;
+    let busy = false;
+
+    async function request(path, options) {
+      const response = await fetch(path, options);
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(typeof data.detail === "string" ? data.detail : "The request could not be completed.");
+      }
+      return data;
+    }
+
+    function setBusy(value) {
+      busy = value;
+      send.disabled = value;
+      newChat.disabled = value;
+      input.readOnly = value;
+      for (const button of historyList.querySelectorAll("button")) button.disabled = value;
+    }
+
+    function showMessage(role, text) {
+      welcome.hidden = true;
+      const message = document.createElement("article");
+      message.className = role === "user" ? "message user" : "message";
+      const speaker = document.createElement("span");
+      speaker.className = "speaker";
+      speaker.textContent = role === "user" ? "You" : "Weather assistant";
+      const bubble = document.createElement("p");
+      bubble.className = "bubble";
+      bubble.textContent = text;
+      message.append(speaker, bubble);
+      messages.append(message);
+    }
+
+    function showHistory() {
+      historyList.replaceChildren();
+      if (chats.length === 0) {
+        const empty = document.createElement("p");
+        empty.id = "history-empty";
+        empty.textContent = "No saved chats yet.";
+        historyList.append(empty);
+        return;
+      }
+      for (const chat of chats) {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "history-item";
+        button.textContent = chat.title;
+        button.title = chat.title;
+        button.disabled = busy;
+        if (chat.id === activeChat) button.setAttribute("aria-current", "true");
+        button.addEventListener("click", () => selectChat(chat.id));
+        historyList.append(button);
+      }
+    }
+
+    async function openChat(id) {
+      const saved = await request("/chats/" + encodeURIComponent(id));
+      activeChat = id;
+      title.textContent = saved.title;
+      messages.replaceChildren();
+      welcome.hidden = saved.messages.length > 0;
+      for (const message of saved.messages) showMessage(message.role, message.text);
+      conversation.scrollTop = conversation.scrollHeight;
+    }
+
+    async function selectChat(id) {
+      if (busy || id === activeChat) return;
+      setBusy(true);
+      status.textContent = "Loading conversation…";
+      try {
+        await openChat(id);
+        input.value = "";
+        showHistory();
+        status.textContent = "";
+      } catch (error) {
+        status.textContent = error.message;
+      } finally {
+        setBusy(false);
+      }
+    }
+
+    newChat.addEventListener("click", () => {
+      activeChat = null;
+      title.textContent = "New chat";
+      messages.replaceChildren();
+      welcome.hidden = false;
+      input.value = "";
+      status.textContent = "";
+      showHistory();
+      input.focus();
+    });
+
+    for (const button of document.querySelectorAll(".example")) {
+      button.addEventListener("click", () => {
+        if (busy) return;
+        input.value = button.textContent;
+        input.focus();
+      });
+    }
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const message = input.value.trim();
+      if (!message || busy) return;
+      setBusy(true);
+      status.textContent = "Waiting for a reply…";
+      try {
+        const result = await request("/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message, chat_id: activeChat })
+        });
+        activeChat = result.chat_id;
+        title.textContent = result.title;
+        chats = [{ id: activeChat, title: result.title }, ...chats.filter(chat => chat.id !== activeChat)];
+        showHistory();
+        showMessage("user", message);
+        showMessage("assistant", result.reply);
+        conversation.scrollTop = conversation.scrollHeight;
+        input.value = "";
+        status.textContent = "";
+      } catch (error) {
+        status.textContent = error.message;
+      } finally {
+        setBusy(false);
+        input.focus();
+      }
+    });
+
+    async function start() {
+      setBusy(true);
+      try {
+        ({ chats } = await request("/chats"));
+        if (chats.length) await openChat(chats[0].id);
+      } catch (error) {
+        status.textContent = error.message;
+      } finally {
+        showHistory();
+        setBusy(false);
+      }
+    }
+
+    start();
+  </script>
+</body>
+</html>

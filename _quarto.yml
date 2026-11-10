@@ -14,33 +14,39 @@ project:
     - 02-Creating-APIs-with-FastAPI/sample_data/notes.json
     - 02-Creating-APIs-with-FastAPI/sample_data/papers.csv
     - 02-Creating-APIs-with-FastAPI/sample_data/retail_sales.csv
-    - 03-04-Building-a-Chatbot-with-LLM-API/practice/weather_chatbot.py
-    - "03-04-Building-a-Chatbot-with-LLM-API/practice/Session 3-4 Practice Chatbot with Multiple Tools.ipynb"
-    - 05-Introduction-to-MCP/practice/weather_mcp_server.py
-    - 05-Introduction-to-MCP/practice/requirements.txt
-    - 05-Introduction-to-MCP/practice/setup_mcp_ev.bat
-    - 05-Introduction-to-MCP/practice/mcp_chatbot.py
-    - 05-Introduction-to-MCP/practice/mcp_client.py
-    - 05-Introduction-to-MCP/practice/mcp_client_stdio.py
-    - 05-Introduction-to-MCP/practice/multi_tool_mcp_server.py
-    - 05-Introduction-to-MCP/practice/mcp_multi_tool_chatbot.py
-    - 06-MCP-in-Practice/practice/sample_weather_mcp_server.py
-    - 06-MCP-in-Practice/practice/weather_resource_client.py
-    - 06-MCP-in-Practice/practice/multi_server_chatbot.py
-    - 06-MCP-in-Practice/practice/mcp_servers.json
-    - 06-MCP-in-Practice/practice/requirements.txt
-    - 06-MCP-in-Practice/practice/filesystem_mcp_server.py
-    - 06-MCP-in-Practice/practice/web_chat.py
-    - 06-MCP-in-Practice/practice/index.html
-    - 06-MCP-in-Practice/sample_data/event-plan.md
-    - 06-MCP-in-Practice/sample_data/weather_samples.json
+    - 03-04-Building-Chatbot-with-LLM-API/practice/weather_chatbot.py
+    - "03-04-Building-Chatbot-with-LLM-API/practice/Session 3-4 Practice Chatbot with Multiple Tools.ipynb"
+    - 05-Building-MCP-Server-and-Client/practice/weather_mcp_server.py
+    - 05-Building-MCP-Server-and-Client/practice/requirements.txt
+    - 05-Building-MCP-Server-and-Client/practice/setup_mcp_ev.bat
+    - 05-Building-MCP-Server-and-Client/practice/mcp_chatbot.py
+    - 05-Building-MCP-Server-and-Client/practice/mcp_client.py
+    - 05-Building-MCP-Server-and-Client/practice/mcp_client_stdio.py
+    - 05-Building-MCP-Server-and-Client/practice/multi_tool_mcp_server.py
+    - 05-Building-MCP-Server-and-Client/practice/mcp_multi_tool_chatbot.py
+    - 05-Building-MCP-Server-and-Client/practice/weather_mcp_server_with_resources.py
+    - 05-Building-MCP-Server-and-Client/practice/weather_chatbot_with_resources.py
+    - 05-Building-MCP-Server-and-Client/practice/session-5-weather-mcp.zip
+    - 05-Building-MCP-Server-and-Client/sample_data/weather_samples.json
+    - 05-Building-MCP-Server-and-Client/sample_data/reference_cities.json
+    - 05-Building-MCP-Server-and-Client/sample_data/activity.md
+    - 05-Building-MCP-Server-and-Client/sample_data/comfort.md
+    - 06-Deploying-MCP-Servers/practice/sample_weather_mcp_server.py
+    - 06-Deploying-MCP-Servers/practice/multi_server_chatbot.py
+    - 06-Deploying-MCP-Servers/practice/mcp_servers.json
+    - 06-Deploying-MCP-Servers/practice/requirements.txt
+    - 06-Deploying-MCP-Servers/practice/filesystem_mcp_server.py
+    - 06-Deploying-MCP-Servers/practice/web_chat.py
+    - 06-Deploying-MCP-Servers/practice/index.html
+    - 06-Deploying-MCP-Servers/sample_data/event-plan.md
+    - 06-Deploying-MCP-Servers/sample_data/weather_samples.json
   render:
     - index.qmd
     - "01-Introduction-to-REST-API/Session 1 Introduction to Connect AI with Business Systems using REST.ipynb"
     - "02-Creating-APIs-with-FastAPI/Session 2 Creating APIs with FastAPI.ipynb"
-    - "03-04-Building-a-Chatbot-with-LLM-API/Session 3-4 Building a Chatbot with an LLM API.ipynb"
-    - "05-Introduction-to-MCP/Session 5 Introduction to MCP.ipynb"
-    - "06-MCP-in-Practice/Session 6 MCP in Practice.ipynb"
+    - "03-04-Building-Chatbot-with-LLM-API/Session 3-4 Building Chatbot with LLM API.ipynb"
+    - "05-Building-MCP-Server-and-Client/Session 5 Building MCP Server & Client.ipynb"
+    - "06-Deploying-MCP-Servers/Session 6 Deploying MCP Servers.ipynb"
 
 website:
   title: "Build AI Apps with REST API & MCP"
@@ -60,11 +66,11 @@ website:
       - text: "Session 2"
         href: "02-Creating-APIs-with-FastAPI/Session 2 Creating APIs with FastAPI.ipynb"
       - text: "Sessions 3–4"
-        href: "03-04-Building-a-Chatbot-with-LLM-API/Session 3-4 Building a Chatbot with an LLM API.ipynb"
+        href: "03-04-Building-Chatbot-with-LLM-API/Session 3-4 Building Chatbot with LLM API.ipynb"
       - text: "Session 5"
-        href: "05-Introduction-to-MCP/Session 5 Introduction to MCP.ipynb"
+        href: "05-Building-MCP-Server-and-Client/Session 5 Building MCP Server & Client.ipynb"
       - text: "Session 6"
-        href: "06-MCP-in-Practice/Session 6 MCP in Practice.ipynb"
+        href: "06-Deploying-MCP-Servers/Session 6 Deploying MCP Servers.ipynb"
   sidebar:
     style: floating
     search: true
@@ -79,12 +85,12 @@ website:
             href: "01-Introduction-to-REST-API/Session 1 Introduction to Connect AI with Business Systems using REST.ipynb"
           - text: "Session 2: Creating APIs with FastAPI"
             href: "02-Creating-APIs-with-FastAPI/Session 2 Creating APIs with FastAPI.ipynb"
-          - text: "Sessions 3–4: Chatbot with LLM API"
-            href: "03-04-Building-a-Chatbot-with-LLM-API/Session 3-4 Building a Chatbot with an LLM API.ipynb"
-          - text: "Session 5: Introduction to MCP"
-            href: "05-Introduction-to-MCP/Session 5 Introduction to MCP.ipynb"
-          - text: "Session 6: MCP in Practice"
-            href: "06-MCP-in-Practice/Session 6 MCP in Practice.ipynb"
+          - text: "Sessions 3–4: Building Chatbot with LLM API"
+            href: "03-04-Building-Chatbot-with-LLM-API/Session 3-4 Building Chatbot with LLM API.ipynb"
+          - text: "Session 5: Building MCP Server & Client"
+            href: "05-Building-MCP-Server-and-Client/Session 5 Building MCP Server & Client.ipynb"
+          - text: "Session 6: Deploying MCP Servers"
+            href: "06-Deploying-MCP-Servers/Session 6 Deploying MCP Servers.ipynb"
   page-footer:
     left: "Build AI Apps with REST API & MCP (ICTPRG553) course materials"
     right:
