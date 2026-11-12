@@ -8,7 +8,7 @@ page-layout: full
 
 # Build AI Apps with REST API & MCP
 
-Welcome to the **Build AI Apps with REST API & MCP** curriculum (aligning with **ICTPRG553 Create and develop REST APIs**). This course guides vocational learners and software engineers through connecting modern artificial intelligence models with enterprise backends and business data systems using robust REST architectures, FastAPI microservices, and the open Model Context Protocol (MCP).
+Welcome to the **Build AI Apps with REST API & MCP** curriculum (aligning with **ICTPRG553 Create and develop REST APIs**). This course guides vocational learners and software engineers through connecting modern artificial intelligence models with enterprise backends and business data systems using robust REST architectures, FastAPI microservices, and the open Model Context Protocol (MCP), through to deploying multi-server MCP endpoints and web chat applications.
 
 🗺️ **Interactive Roadmap**: Explore our interactive [Mindmap of the Course](mindmap.html) for a zoomable, bird's-eye view of all curriculum topics and direct section links.
 
@@ -51,9 +51,9 @@ MCP Architecture (Host, Client, Server) · FastMCP Server Development · stdio &
 
 ::: {.info-card}
 #### 🧩 [Session 06: Deploying MCP Servers](<06-Deploying-MCP-Servers/Session 6 Deploying MCP Servers.ipynb>)
-[Multi-server MCP Chatbots]{.focus-badge}
+[Multi-Server MCP & Cloud Deployment]{.focus-badge}
 
-- Connect Multiple MCP Servers · Deploy a Remote MCP Server · Deploy the Web Chat
+Connect Multiple MCP Servers (stdio & Streamable HTTP) · JSON Server Configuration & Tool Routing · Deploy a Remote MCP Server on Render · Deploy a FastAPI Web Chat with Browser Histories
 :::
 :::
 
@@ -77,7 +77,12 @@ Programmatically interact with leading generative AI models, manage multi-turn d
 
 ::: {.info-card}
 #### 🔌 Open Agent Protocol (MCP)
-Implement Model Context Protocol servers and clients, standardising how intelligent assistants discover and execute enterprise tools and inspect external resources.
+Implement Model Context Protocol servers and clients, standardising how intelligent assistants discover and execute enterprise tools, inspect external resources, and apply reusable prompts.
+:::
+
+::: {.info-card}
+#### ☁️ Multi-Server Orchestration & Cloud Deployment
+Configure multi-server MCP hosts across local stdio and remote Streamable HTTP transports, and deploy production MCP endpoints and FastAPI web chat services via GitHub and Render.
 :::
 :::
 
@@ -96,7 +101,12 @@ Build an interactive command-line assistant powered by Gemini or OpenRouter that
 
 ::: {.info-card}
 #### 🛠️ FastMCP Weather & Research Server
-Construct a standalone FastMCP server exposing structured weather forecasts and arXiv document searches, compatible with Claude Desktop and custom terminal clients via stdio and HTTP transports.
+Construct a standalone FastMCP server exposing structured weather forecasts, arXiv document searches, live resources, and dynamic prompts, compatible with Claude Desktop and custom terminal clients via stdio and HTTP transports.
+:::
+
+::: {.info-card}
+#### 🌐 Deployed Multi-Server MCP & Web Chat
+Combine local Filesystem and remote Weather and Microsoft Learn MCP servers inside a multi-server chatbot, then deploy the Weather MCP server and a password-protected FastAPI web chat to Render.
 :::
 :::
 
@@ -115,7 +125,7 @@ Cloud Software & SaaS · Enterprise IT Consulting · FinTech & Banking · Teleco
 
 ::: {.info-card}
 #### 📁 Portfolio Projects
-FastAPI microservice with OpenAPI specs · Autonomous tool-calling chatbot · FastMCP server exposing custom business APIs
+FastAPI microservice with OpenAPI specs · Autonomous tool-calling chatbot · FastMCP server exposing custom business APIs · Deployed remote MCP server and FastAPI web chat on Render
 :::
 :::
 
